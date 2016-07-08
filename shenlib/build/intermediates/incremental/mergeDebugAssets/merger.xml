@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\my\AndroidProject\source\LibTest\shenlib\src\main\assets"/><source path="D:\my\AndroidProject\source\LibTest\shenlib\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="D:\my\AndroidProject\source\LibTest\shenlib\src\debug\assets"/></dataSet></merger>
