@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.shenjianli.lib.bean.WeatherInfo;
 import com.shenjianli.lib.bean.WeatherJson;
 import com.shenjianli.shenlib.net.mock.MockService;
+import com.shenjianli.shenlib.util.LogUtils;
+
 /**
  * Created by edianzu on 2016/7/8.
  */
@@ -15,6 +17,8 @@ public class WeatherMockService extends MockService{
         weatherinfo.setCityid("33333");
         WeatherJson weatherJson = new WeatherJson();
         weatherJson.setWeatherinfo(weatherinfo);
-        return JSON.toJSONString(weatherJson);
+        String jsonStr = JSON.toJSONString(weatherJson);
+        LogUtils.i("获得的json字符串为：" + jsonStr);
+        return jsonStr;
     }
 }
