@@ -14,14 +14,13 @@ import okhttp3.Protocol;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-/**
- * Created by edianzu on 2016/7/8.
+/** * Created by edianzu on 2016/7/8.
  */
 public class MockServerInterceptor implements Interceptor{
     @Override
     public Response intercept(Chain chain) throws IOException {
         Response response = null;
-        if(!BuildConfig.DEBUG) {
+        if(BuildConfig.DEBUG) {
             String key = chain.request().url().uri().getPath();
             URLData urlData = UrlConfigManager.findURL(key);
             if(null != urlData){

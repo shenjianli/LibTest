@@ -4,10 +4,9 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Window;
-import android.view.WindowManager;
 
-import com.shoping.mall.application.ActivityManager;
-import com.shoping.mall.util.LogUtil;
+import com.shenjianli.shenlib.util.LogUtils;
+
 
 public class BaseFragmentActivity extends FragmentActivity {
 
@@ -26,7 +25,7 @@ public class BaseFragmentActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		//this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
-		LogUtil.d(TAG, "onCreate");
+		LogUtils.d(TAG, "onCreate");
 		ActivityManager.getInstance().addActivity(this);
 	}
 
@@ -36,7 +35,7 @@ public class BaseFragmentActivity extends FragmentActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		LogUtil.d(TAG, "onStart");
+		LogUtils.d(TAG, "onStart");
 	}
 
 	/**
@@ -47,7 +46,7 @@ public class BaseFragmentActivity extends FragmentActivity {
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		param = savedInstanceState.getInt("param");
-		LogUtil.i(TAG, "onRestoreInstanceState called. get param: " + param);
+		LogUtils.i(TAG, "onRestoreInstanceState called. get param: " + param);
 		super.onRestoreInstanceState(savedInstanceState);
 	}
 
@@ -57,7 +56,7 @@ public class BaseFragmentActivity extends FragmentActivity {
 	@Override
 	protected void onRestart() {
 		super.onRestart();
-		LogUtil.d(TAG, "onRestart");
+		LogUtils.d(TAG, "onRestart");
 	}
 
 	/**
@@ -66,7 +65,7 @@ public class BaseFragmentActivity extends FragmentActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		LogUtil.d(TAG, "onResume");
+		LogUtils.d(TAG, "onResume");
 	}
 
 	/**
@@ -76,7 +75,7 @@ public class BaseFragmentActivity extends FragmentActivity {
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		outState.putInt("param", param);
-		LogUtil.i(TAG, "onSaveInstanceState called. put param: " + param);
+		LogUtils.i(TAG, "onSaveInstanceState called. put param: " + param);
 		super.onSaveInstanceState(outState);
 	}
 
@@ -86,7 +85,7 @@ public class BaseFragmentActivity extends FragmentActivity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		LogUtil.d(TAG, "onPause");
+		LogUtils.d(TAG, "onPause");
 	}
 
 	/**
@@ -96,7 +95,7 @@ public class BaseFragmentActivity extends FragmentActivity {
 	@Override
 	protected void onStop() {
 		super.onStop();
-		LogUtil.d(TAG, "onStop");
+		LogUtils.d(TAG, "onStop");
 	}
 
 	/**
@@ -105,7 +104,7 @@ public class BaseFragmentActivity extends FragmentActivity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		LogUtil.d(TAG, "onDestroy");
+		LogUtils.d(TAG, "onDestroy");
 		ActivityManager.getInstance().removeActivityFromStack(this);
 	}
 
@@ -115,7 +114,7 @@ public class BaseFragmentActivity extends FragmentActivity {
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
 		super.onWindowFocusChanged(hasFocus);
-		LogUtil.i(TAG, "onWindowFocusChanged called.");
+		LogUtils.i(TAG, "onWindowFocusChanged called.");
 	}
 
 	/**
@@ -128,10 +127,10 @@ public class BaseFragmentActivity extends FragmentActivity {
 
 		switch (newConfig.orientation) {
 		case Configuration.ORIENTATION_PORTRAIT:
-			LogUtil.i(TAG, "onConfigurationChanged called. ORIENTATION_PORTRAIT");
+			LogUtils.i(TAG, "onConfigurationChanged called. ORIENTATION_PORTRAIT");
 			break;
 		case Configuration.ORIENTATION_LANDSCAPE:
-			LogUtil.i(TAG, "onConfigurationChanged called. ORIENTATION_LANDSCAPE");
+			LogUtils.i(TAG, "onConfigurationChanged called. ORIENTATION_LANDSCAPE");
 			break;
 		}
 	}

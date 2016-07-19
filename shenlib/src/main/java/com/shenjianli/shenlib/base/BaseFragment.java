@@ -9,8 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.shoping.mall.R;
-import com.shoping.mall.util.LogUtil;
+import com.shenjianli.shenlib.R;
+import com.shenjianli.shenlib.util.LogUtils;
+
 
 public abstract class BaseFragment extends Fragment{
 
@@ -23,50 +24,50 @@ public abstract class BaseFragment extends Fragment{
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-		LogUtil.d(TAG, "onAttach");
+		LogUtils.d(TAG, "onAttach");
 		mContext = activity;
 	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		LogUtil.d(TAG, "onCreate");
+		LogUtils.d(TAG, "onCreate");
 		initData();
 	}
 
 	public void initData()
 	{
-		LogUtil.d(TAG, "initData");
+		LogUtils.d(TAG, "initData");
 	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		LogUtil.d(TAG, "onCreateView");
+		LogUtils.d(TAG, "onCreateView");
 		initView();
 		return mView;
 	}
 
 	public void initView() {
-		LogUtil.d(TAG, "initView");
+		LogUtils.d(TAG, "initView");
 	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		LogUtil.d(TAG, "onActivityCreated");
+		LogUtils.d(TAG, "onActivityCreated");
 	}
 
 	@Override
 	public void onStart() {
 		super.onStart();
-		LogUtil.d(TAG, "onStart");
+		LogUtils.d(TAG, "onStart");
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		LogUtil.d(TAG, "onResume");
+		LogUtils.d(TAG, "onResume");
 	}
 
 	public void switchToDifferentFragment(Fragment toFragment, int resId,
@@ -113,19 +114,19 @@ public abstract class BaseFragment extends Fragment{
 	@Override
 	public void onPause() {
 		super.onPause();
-		LogUtil.d(TAG, "onPause");
+		LogUtils.d(TAG, "onPause");
 	}
 
 	@Override
 	public void onStop() {
 		super.onStop();
-		LogUtil.d(TAG, "onStop");
+		LogUtils.d(TAG, "onStop");
 	}
 
 	@Override
 	public void onDestroyView() {
 		super.onDestroyView();
-		LogUtil.d(TAG, "onDestroyView");
+		LogUtils.d(TAG, "onDestroyView");
 		clearObject();
 		clearView();
 	}
@@ -133,13 +134,13 @@ public abstract class BaseFragment extends Fragment{
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		LogUtil.d(TAG, "onDestroy");
+		LogUtils.d(TAG, "onDestroy");
 	}
 
 	@Override
 	public void onDetach() {
 		super.onDetach();
-		LogUtil.d(TAG, "onDetach");
+		LogUtils.d(TAG, "onDetach");
 	}
 
 	public abstract void clearObject();

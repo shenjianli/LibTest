@@ -132,12 +132,12 @@
         "source": "D:\\my\\AndroidProject\\source\\LibTest\\shenlib\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_popup_menu_item_layout.xml"
     },
     {
-        "merged": "D:\\my\\AndroidProject\\source\\LibTest\\shenlib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_dialog_title_material.xml",
-        "source": "D:\\my\\AndroidProject\\source\\LibTest\\shenlib\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_dialog_title_material.xml"
-    },
-    {
         "merged": "D:\\my\\AndroidProject\\source\\LibTest\\shenlib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_part_time.xml",
         "source": "D:\\my\\AndroidProject\\source\\LibTest\\shenlib\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "D:\\my\\AndroidProject\\source\\LibTest\\shenlib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_dialog_title_material.xml",
+        "source": "D:\\my\\AndroidProject\\source\\LibTest\\shenlib\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_dialog_title_material.xml"
     },
     {
         "merged": "D:\\my\\AndroidProject\\source\\LibTest\\shenlib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",

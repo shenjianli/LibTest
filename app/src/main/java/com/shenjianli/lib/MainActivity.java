@@ -10,6 +10,7 @@ import com.shenjianli.lib.api.ApiStores;
 import com.shenjianli.lib.bean.WeatherJson;
 import com.shenjianli.shenlib.RetrofitCallback;
 import com.shenjianli.shenlib.net.NetClient;
+import com.shenjianli.shenlib.widget.CylinderImageView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     Button button;
     @Bind(R.id.text)
     TextView text;
+    @Bind(R.id.cylinderImageView)
+    CylinderImageView cylinderImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<WeatherJson> arg0, Throwable arg1) {
-                Log.i(this.getClass().getSimpleName(), arg1.getStackTrace()+"");
+                Log.i(this.getClass().getSimpleName(), arg1.getStackTrace() + "");
             }
 
             @Override
@@ -64,16 +67,27 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(WeatherJson t) {
-                if(null != t){
-                    Log.i(this.getClass().getSimpleName(),t.getWeatherinfo().getCity());
+                if (null != t) {
+                    Log.i(this.getClass().getSimpleName(), t.getWeatherinfo().getCity());
                 }
             }
 
             @Override
             public void onFail(String errorMsg) {
-                Log.e(this.getClass().getSimpleName(),errorMsg);
+                Log.e(this.getClass().getSimpleName(), errorMsg);
             }
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cylinderImageView.resume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        cylinderImageView.pause();
+    }
 }
