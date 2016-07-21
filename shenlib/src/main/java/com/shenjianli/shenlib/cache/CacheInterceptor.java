@@ -17,14 +17,14 @@ public class CacheInterceptor implements Interceptor{
 	@Override
 	public Response intercept(Chain chain) throws IOException {
 		Request request = chain.request();
-        if (!AppUtils.networkIsAvailable(LibApp.getLibInstance())) {
+        if (!AppUtils.networkIsAvailable(LibApp.getLibInstance().getMobileContext())) {
             request = request.newBuilder()
                     .cacheControl(CacheControl.FORCE_CACHE)
                     .build();
             Log.i(this.getClass().getSimpleName(), "无网络强制使用缓存机制");
         }
         Response response = chain.proceed(request);
-        if (AppUtils.networkIsAvailable(LibApp.getLibInstance())) {
+        if (AppUtils.networkIsAvailable(LibApp.getLibInstance().getMobileContext())) {
             int maxAge = 0;
             // 有网络时 设置缓存超时时间0个小时
             response.newBuilder()
