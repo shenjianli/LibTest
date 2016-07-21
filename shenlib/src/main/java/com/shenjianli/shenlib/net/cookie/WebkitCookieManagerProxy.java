@@ -1,4 +1,4 @@
-package com.shenjianli.shenlib;
+package com.shenjianli.shenlib.net.cookie;
 
 import java.io.IOException;
 import java.net.CookieManager;

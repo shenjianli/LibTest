@@ -11,16 +11,45 @@ import android.content.res.XmlResourceParser;
 
 import com.shenjianli.shenlib.LibApp;
 import com.shenjianli.shenlib.R;
+import com.shenjianli.shenlib.util.LogUtils;
 
 
 public class UrlConfigManager {
-	private static ArrayList<URLData> urlList;
 
-	private static void fetchUrlDataFromXml() {
-		urlList = new ArrayList<URLData>();
+	public static boolean MockServiceEnable = false;
 
-		final XmlResourceParser xmlParser = LibApp.getLibInstance()
-				.getResources().getXml(R.xml.url);
+	private  ArrayList<URLData> urlList;
+	private int mConfigFileId = -1;
+
+	private static UrlConfigManager mUrlConfigManager;
+
+	private UrlConfigManager(){
+
+	}
+	public static UrlConfigManager getUrlConfigManager(){
+		if(null == mUrlConfigManager){
+			mUrlConfigManager = new UrlConfigManager();
+		}
+		return mUrlConfigManager;
+	}
+
+	public void initUrlConfigManager(int configId){
+		this.mConfigFileId = configId;
+		MockServiceEnable = true;
+		fetchUrlDataFromXml();
+	}
+
+	private void fetchUrlDataFromXml() {
+		if(-1 == mConfigFileId ){
+			LogUtils.w("配置文件id不正确");
+		}
+
+		if(null == urlList){
+			urlList = new ArrayList<URLData>();
+		}
+
+		final XmlResourceParser xmlParser = LibApp.getLibInstance().getMobileContext()
+				.getResources().getXml(mConfigFileId);
 
 		int eventCode;
 		try {
@@ -61,10 +90,11 @@ public class UrlConfigManager {
 		}
 	}
 
-	public static URLData findURL(final String findKey) {
+	public  URLData findURL(final String findKey) {
 		// 如果urlList还没有数据（第一次），或者被回收了，那么（重新）加载xml
-		if (urlList == null || urlList.isEmpty())
+		if (urlList == null || urlList.isEmpty()){
 			fetchUrlDataFromXml();
+		}
 
 		for (URLData data : urlList) {
 			if (findKey.equals(data.getKey())) {

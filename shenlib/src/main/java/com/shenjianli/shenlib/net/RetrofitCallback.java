@@ -1,4 +1,4 @@
-package com.shenjianli.shenlib;
+package com.shenjianli.shenlib.net;
 
 import java.io.IOException;
 
