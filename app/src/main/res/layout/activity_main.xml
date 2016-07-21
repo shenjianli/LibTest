@@ -24,6 +24,7 @@
         android:text="Hello World!" />
 
     <com.shenjianli.shenlib.widget.CylinderImageView
+        android:layout_below="@id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cylinderImageView"
