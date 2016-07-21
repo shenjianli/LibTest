@@ -2,9 +2,14 @@
     package="com.shenjianli.shenlib">
 
     <application
-        android:name=".LibApp"
         android:allowBackup="true"
         android:supportsRtl="true">
+
+        <receiver android:name="com.shenjianli.shenlib.receiver.NetBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
 
     </application>
 
