@@ -1,11 +1,14 @@
 package com.shenjianli.shenlib.util;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+
+import com.shenjianli.shenlib.LibApp;
 
 /**
  * 跟App相关的辅助类
@@ -15,7 +18,6 @@ import android.net.NetworkInfo;
  */
 public class AppUtils
 {
-
 	private AppUtils()
 	{
 		/* cannot be instantiated */
