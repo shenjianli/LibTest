@@ -2,8 +2,8 @@ package com.shenjianli.shenlib.net;
 
 import com.shenjianli.shenlib.Constants;
 import com.shenjianli.shenlib.LibApp;
-import com.shenjianli.shenlib.PersistentCookieStore;
-import com.shenjianli.shenlib.WebkitCookieManagerProxy;
+import com.shenjianli.shenlib.net.cookie.PersistentCookieStore;
+import com.shenjianli.shenlib.net.cookie.WebkitCookieManagerProxy;
 import com.shenjianli.shenlib.cache.CacheInterceptor;
 import com.shenjianli.shenlib.net.interceptor.HeaderInterceptor;
 import com.shenjianli.shenlib.net.interceptor.MockServerInterceptor;
@@ -30,7 +30,7 @@ public class NetClient {
             /**
              *设置缓存，代码略
              */
-	         File cacheFile = new File(LibApp.getLibInstance().getExternalCacheDir(), "MallCache");
+	         File cacheFile = new File(LibApp.getLibInstance().getMobileContext().getExternalCacheDir(), "MallCache");
 	         Cache cache = new Cache(cacheFile, Constants.CACHE_SIZE);
              builder.cache(cache).addInterceptor(new CacheInterceptor());
             /**
@@ -61,7 +61,7 @@ public class NetClient {
              //cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
              //builder.cookieJar(new JavaNetCookieJar(cookieManager));
              
-             PersistentCookieStore persistentCookieStore = new PersistentCookieStore(LibApp.getLibInstance());
+             PersistentCookieStore persistentCookieStore = new PersistentCookieStore(LibApp.getLibInstance().getMobileContext());
              WebkitCookieManagerProxy coreCookieManager = new WebkitCookieManagerProxy(persistentCookieStore, java.net.CookiePolicy.ACCEPT_ALL);
              //java.net.CookieHandler.setDefault(coreCookieManager);
              builder.cookieJar(new JavaNetCookieJar(coreCookieManager));
