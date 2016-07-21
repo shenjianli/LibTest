@@ -20,9 +20,9 @@ public class MockServerInterceptor implements Interceptor{
     @Override
     public Response intercept(Chain chain) throws IOException {
         Response response = null;
-        if(BuildConfig.DEBUG) {
+        if(UrlConfigManager.MockServiceEnable) {
             String key = chain.request().url().uri().getPath();
-            URLData urlData = UrlConfigManager.findURL(key);
+            URLData urlData = UrlConfigManager.getUrlConfigManager().findURL(key);
             if(null != urlData){
                if(null != urlData.getMockClass()){
                    try {
