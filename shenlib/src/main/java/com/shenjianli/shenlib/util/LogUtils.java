@@ -7,7 +7,7 @@ import android.util.Log;
 
 public class LogUtils {
 	
-	public final static boolean isOutPutLog = true;
+	public static boolean isOutPutLog = false;
 	
 	public static void v(String tag,String msg){
 		if(isOutPutLog){

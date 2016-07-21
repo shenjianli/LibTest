@@ -1,5 +1,6 @@
 package com.shenjianli.lib;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -8,8 +9,12 @@ import android.widget.TextView;
 
 import com.shenjianli.lib.api.ApiStores;
 import com.shenjianli.lib.bean.WeatherJson;
-import com.shenjianli.shenlib.RetrofitCallback;
+
+import com.shenjianli.lib.service.BackgroundMonitorService;
+import com.shenjianli.shenlib.net.RetrofitCallback;
 import com.shenjianli.shenlib.net.NetClient;
+import com.shenjianli.shenlib.receiver.NetBroadcastReceiver;
+import com.shenjianli.shenlib.util.CustomToast;
 import com.shenjianli.shenlib.widget.CylinderImageView;
 
 import butterknife.Bind;
@@ -19,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NetBroadcastReceiver.NetStateChangeListener {
 
     @Bind(R.id.button)
     Button button;
@@ -33,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        NetBroadcastReceiver.addNetStateListener(this);
+        startService(new Intent(this, BackgroundMonitorService.class));
     }
 
     @OnClick(R.id.button)
@@ -89,5 +96,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         cylinderImageView.pause();
+    }
+
+    @Override
+    public void onNetChange(boolean connect) {
+        if(connect){
+            CustomToast.show(this,"亲，网络恢复啦！");
+        }
+        else {
+            CustomToast.show(this,"亲，网络断开了！");
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(new Intent(MainActivity.this, BackgroundMonitorService.class));
     }
 }
