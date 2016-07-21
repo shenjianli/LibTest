@@ -1,0 +1,5 @@
+<resources>
+    <declare-styleable name="CylinderImageViewStyle">
+        <attr name="cylinder_image" format="reference"/>
+    </declare-styleable>
+</resources>
