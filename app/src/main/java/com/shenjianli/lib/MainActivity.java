@@ -2,20 +2,28 @@ package com.shenjianli.lib;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.shenjianli.lib.adapter.RecylerViewAdapter;
 import com.shenjianli.lib.api.ApiStores;
 import com.shenjianli.lib.bean.WeatherJson;
-
+import com.shenjianli.lib.data.DemoData;
 import com.shenjianli.lib.service.BackgroundMonitorService;
-import com.shenjianli.shenlib.net.RetrofitCallback;
 import com.shenjianli.shenlib.net.NetClient;
+import com.shenjianli.shenlib.net.RetrofitCallback;
 import com.shenjianli.shenlib.receiver.NetBroadcastReceiver;
 import com.shenjianli.shenlib.util.CustomToast;
 import com.shenjianli.shenlib.widget.CylinderImageView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -32,6 +40,14 @@ public class MainActivity extends AppCompatActivity implements NetBroadcastRecei
     TextView text;
     @Bind(R.id.cylinderImageView)
     CylinderImageView cylinderImageView;
+    @Bind(R.id.recyclerView)
+    RecyclerView recyclerView;
+    @Bind(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
+
+    RecylerViewAdapter adapter;
+    List<DemoData> mDemoDatas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +56,88 @@ public class MainActivity extends AppCompatActivity implements NetBroadcastRecei
         ButterKnife.bind(this);
         NetBroadcastReceiver.addNetStateListener(this);
         startService(new Intent(this, BackgroundMonitorService.class));
+
+        initData();
+        adapter = new RecylerViewAdapter(mDemoDatas);
+        initRecylerView();
     }
+
+    private void initData() {
+        mDemoDatas = new ArrayList<>();
+        DemoData demodata;
+        for (int i = 0; i < 5; i++) {
+            demodata = new DemoData();
+            demodata.setImgId(R.drawable.ic_launcher);
+            demodata.setName("demo" + i);
+            mDemoDatas.add(demodata);
+        }
+    }
+
+
+
+
+    /*
+    * // 网格布局管理器
+GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+// 设置布局管理器
+recyclerView.setLayoutManager(gridLayoutManager);
+ 改为
+
+// 交错网格布局管理器
+StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
+// 设置布局管理器
+recyclerView.setLayoutManager(staggeredGridLayoutManager);
+item布局
+
+ 改为
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/imavPic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/tvUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+    * */
+
+    private void initRecylerView() {
+        // 线性布局管理器
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+
+        // 设置布局管理器
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        recyclerView.setAdapter(adapter);
+
+        // 模拟下拉刷新
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                        adapter.notifyDataSetChanged();
+                    }
+                }, 2000);
+            }
+        });
+    }
+
 
     @OnClick(R.id.button)
     public void onClick() {
@@ -100,11 +197,10 @@ public class MainActivity extends AppCompatActivity implements NetBroadcastRecei
 
     @Override
     public void onNetChange(boolean connect) {
-        if(connect){
-            CustomToast.show(this,"亲，网络恢复啦！");
-        }
-        else {
-            CustomToast.show(this,"亲，网络断开了！");
+        if (connect) {
+            CustomToast.show(this, "亲，网络恢复啦！");
+        } else {
+            CustomToast.show(this, "亲，网络断开了！");
         }
     }
 

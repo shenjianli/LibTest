@@ -2,6 +2,7 @@ package com.shenjianli.shenlib.base;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+
 import android.support.v4.app.FragmentActivity;
 import android.view.Window;
 

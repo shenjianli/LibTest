@@ -3,6 +3,7 @@
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
+/.idea/misc.xml
 .DS_Store
 /build
 /captures
@@ -45,3 +46,10 @@ captures/
 
 # Keystore files
 *.jks
+app/src/main/res/drawable/
+app/src/main/res/xml/
+shenlib/src/main/java/com/shenjianli/shenlib/service/
+shenlib/src/main/res/drawable/
+src/main/res/drawable/
+src/main/res/xml/
+src/main/java/com/shenjianli/shenlib/service/

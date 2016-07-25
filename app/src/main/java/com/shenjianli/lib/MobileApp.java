@@ -30,9 +30,9 @@ public class MobileApp extends Application{
                 LibApp.getLibInstance().setUrlConfigManager(R.xml.url);
             }
         }
-       // LibApp.getLibInstance().setBeanFactoryConfig(R.raw.bean);
+        LibApp.getLibInstance().setBeanFactoryConfig(R.raw.bean);
         //BeanFactory.getBeanFactory().initBeanFactory(R.raw.bean);
-        BeanFactory.getBeanFactory().initBeanFactory("bean");
+       // BeanFactory.getBeanFactory().initBeanFactory("bean");
 
         if(!LogUtils.isOutPutLog){
             CrashHandler crashHandler = CrashHandler.getInstance();
