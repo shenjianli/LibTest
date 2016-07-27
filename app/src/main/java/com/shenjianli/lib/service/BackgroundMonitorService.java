@@ -5,7 +5,6 @@ import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.ActivityManager.RunningTaskInfo;
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +16,6 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.shenjianli.lib.MainActivity;
 import com.shenjianli.shenlib.R;
 import com.shenjianli.shenlib.util.LogUtils;
 

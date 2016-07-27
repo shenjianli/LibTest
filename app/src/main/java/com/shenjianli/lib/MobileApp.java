@@ -3,8 +3,10 @@ package com.shenjianli.lib;
 import android.app.Application;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.provider.Settings;
 
 import com.shenjianli.shenlib.LibApp;
+import com.shenjianli.shenlib.base.ActivityManager;
 import com.shenjianli.shenlib.exception.CrashHandler;
 import com.shenjianli.shenlib.util.FileUtils;
 import com.shenjianli.shenlib.util.LogUtils;
@@ -88,5 +90,10 @@ public class MobileApp extends Application{
         }
         versionName += "_";
         return versionName;
+    }
+
+
+    public void exit(){
+        ActivityManager.getInstance().appExit(this);
     }
 }

@@ -1,21 +1,24 @@
-package com.shenjianli.lib;
+package com.shenjianli.lib.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.shenjianli.lib.R;
 import com.shenjianli.lib.adapter.RecylerViewAdapter;
 import com.shenjianli.lib.api.ApiStores;
 import com.shenjianli.lib.bean.WeatherJson;
 import com.shenjianli.lib.data.DemoData;
 import com.shenjianli.lib.service.BackgroundMonitorService;
+import com.shenjianli.shenlib.base.BaseActivity;
 import com.shenjianli.shenlib.net.NetClient;
 import com.shenjianli.shenlib.net.RetrofitCallback;
 import com.shenjianli.shenlib.receiver.NetBroadcastReceiver;
@@ -32,7 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements NetBroadcastReceiver.NetStateChangeListener {
+public class MainActivity extends BaseActivity implements NetBroadcastReceiver.NetStateChangeListener {
 
     @Bind(R.id.button)
     Button button;
@@ -64,7 +67,10 @@ public class MainActivity extends AppCompatActivity implements NetBroadcastRecei
 
     private void initData() {
         mDemoDatas = new ArrayList<>();
-        DemoData demodata;
+        DemoData demodata = new DemoData();
+        demodata.setImgId(R.drawable.ic_launcher);
+        demodata.setName("RecyclerView Demo");
+        mDemoDatas.add(demodata);
         for (int i = 0; i < 5; i++) {
             demodata = new DemoData();
             demodata.setImgId(R.drawable.ic_launcher);
@@ -122,6 +128,30 @@ item布局
         recyclerView.setLayoutManager(linearLayoutManager);
 
         recyclerView.setAdapter(adapter);
+
+        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+                if(MotionEvent.ACTION_UP == e.getAction()){
+                    View childView = recyclerView.findChildViewUnder(e.getX(), e.getY());
+                   int position = rv.getChildAdapterPosition(childView);
+                    if(0 == position){
+                        Intent intent = new Intent(MainActivity.this,RecyclerViewMainActivity.class);
+                        startActivity(intent);
+                    }
+                }
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
 
         // 模拟下拉刷新
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
