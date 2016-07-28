@@ -12,7 +12,7 @@
         jar="D:\my\AndroidProject\source\LibTest\app\build\intermediates\exploded-aar\LibTest\shenlib\unspecified\jars\libs\okhttp-3.3.1.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="f8d2bf7d88bc534db60d31f013d002c972e89b36">
+        sha1="b553fcbd55697800cce498c5c3b94847b7b21493">
         <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\debug\folders\1000\8\okhttp-3.3.1_a25c669c312c821a4f77a33f2b0e1ed130d5ce0c\classes.dex" />
     </item>
     <item
@@ -23,17 +23,24 @@
         <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\debug\folders\1000\10\io.reactivex-rxandroid-1.2.1_f016523a7421af3bc1ba6621c615176ad188bfeb\classes.dex" />
     </item>
     <item
+        jar="D:\my\AndroidProject\source\LibTest\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.4.0_75e716d974c3c0d056d49f463146f6833091c01b\classes.dex" />
+    </item>
+    <item
         jar="D:\my\AndroidProject\source\LibTest\app\build\intermediates\exploded-aar\LibTest\shenlib\unspecified\jars\libs\logging-interceptor-3.3.1.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="345607a502f09b39165e515b4c657eba5cdf023b">
+        sha1="1d9c5a18d70a14224e4d2a5be20bbb5895b77034">
         <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\debug\folders\1000\8\logging-interceptor-3.3.1_39f14bec2c7f062b4d88c39f0d98694ee704824e\classes.dex" />
     </item>
     <item
         jar="D:\my\AndroidProject\source\LibTest\app\build\intermediates\exploded-aar\LibTest\shenlib\unspecified\jars\libs\converter-gson-2.0.2.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="574afd1154e38156ae739c8de65e582a0560571d">
+        sha1="7e92b0c4c4ac8c431bc86e132f0a612e842198ae">
         <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\debug\folders\1000\8\converter-gson-2.0.2_dd719ddbca814fac9e2c2500c4d97d51a30897de\classes.dex" />
     </item>
     <item
@@ -54,14 +61,14 @@
         jar="D:\my\AndroidProject\source\LibTest\app\build\intermediates\exploded-aar\LibTest\shenlib\unspecified\jars\libs\okio-1.8.0.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="4351a559a990302cf18fe97d0804b01cd7ed9588">
+        sha1="e3f6b04c64e93f71b18a4cfe3a2d96272f616a2b">
         <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\debug\folders\1000\8\okio-1.8.0_784fc1ff31409052fc027fefe8f10319a2e1a32b\classes.dex" />
     </item>
     <item
         jar="D:\my\AndroidProject\source\LibTest\app\build\intermediates\exploded-aar\LibTest\shenlib\unspecified\jars\libs\adapter-rxjava-2.0.2.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="6fa48ff72fdda02774805ce14ca4abf2ec30bcee">
+        sha1="31f4a28fd06ede0d5435941cf2d7f01c39adb95e">
         <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\debug\folders\1000\8\adapter-rxjava-2.0.2_1f72a386e78f2a4dccda6d7d478c71814f5df1da\classes.dex" />
     </item>
     <item
@@ -82,29 +89,22 @@
         jar="D:\my\AndroidProject\source\LibTest\app\build\intermediates\exploded-aar\LibTest\shenlib\unspecified\jars\libs\retrofit-2.0.2.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="05d2e8ef45c895c3f106796999445ef3a5b17e58">
+        sha1="68f183c8018f324b8a61ce94dea6bbf2bcef1304">
         <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\debug\folders\1000\8\retrofit-2.0.2_bd8adee4e10411263916044794847fd7adb53a2b\classes.dex" />
     </item>
     <item
-        jar="D:\my\AndroidProject\source\LibTest\app\build\intermediates\exploded-aar\LibTest\shenlib\unspecified\jars\libs\android-support-v4.jar"
+        jar="D:\Program\Adt\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="ea9aaddec70ce78b65fcdb18f667070fa6149361">
-        <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\debug\folders\1000\8\android-support-v4_83e50014852d7fcf9917e3116ea66ff88e811bf5\classes.dex" />
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_1050816bb43db8a06dfba0007204c159bdc20bf2\classes.dex" />
     </item>
     <item
         jar="D:\my\AndroidProject\source\LibTest\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="7c73fb9901abf6b0529af729a52dbfaecc27efba">
+        sha1="479cab4ff30f34cbeab7b7b6311d60d23a949763">
         <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_122110091ae3bc2be9a449c0991e26a3447b535c\classes.dex" />
-    </item>
-    <item
-        jar="D:\Program Files\Adt\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
-        <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_eef8ed35e576cc52977b905b695295d4439ba523\classes.dex" />
     </item>
     <item
         jar="C:\Users\edianzu\.gradle\caches\modules-2\files-2.1\io.reactivex\rxjava\1.1.6\2586312cd2b8a511e4c6236736f5a039fc0f2273\rxjava-1.1.6.jar"
@@ -124,7 +124,7 @@
         jar="D:\my\AndroidProject\source\LibTest\app\build\intermediates\exploded-aar\LibTest\shenlib\unspecified\jars\libs\okhttp-urlconnection-3.3.1.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="d86894379b510c4554c4d2cfe4d2ae3b096fe183">
+        sha1="ea35ae713dbbd491e396717618dcac8f9ac684b0">
         <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\debug\folders\1000\8\okhttp-urlconnection-3.3.1_93eae1e3e1bcf17e79d7bc4c0026233d1fcc0cc7\classes.dex" />
     </item>
     <item
@@ -138,28 +138,28 @@
         jar="D:\my\AndroidProject\source\LibTest\app\build\intermediates\exploded-aar\LibTest\shenlib\unspecified\jars\libs\adapter-rxjava-mock-2.0.0-beta2.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="7cae989d65bc48a36cb7671e1dad68c0d2d28074">
+        sha1="126079f6870fe6667d17a5ac5d75cb68a1116144">
         <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\debug\folders\1000\8\adapter-rxjava-mock-2.0.0-beta2_c732138dd418646d33a44c7f2c36d175621754d4\classes.dex" />
     </item>
     <item
         jar="D:\my\AndroidProject\source\LibTest\app\build\intermediates\exploded-aar\LibTest\shenlib\unspecified\jars\libs\mockwebserver-3.3.1.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="5be9abacbbda662738ed228a2811676e1834a6a1">
+        sha1="38837040e307f5015e538bd4a9bd9f7624c46040">
         <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\debug\folders\1000\8\mockwebserver-3.3.1_e1d6ba3e93eda27cbaa774f92358dea0cd5e2548\classes.dex" />
     </item>
     <item
         jar="D:\my\AndroidProject\source\LibTest\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="c1708a9a14c82f920b5c908379601f506c4215f1">
+        sha1="fbde5367c276b942a89b5c6b5de13cb8dd392f3d">
         <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_08d61cfb345ed9c732b13991228dfd2ffa05cadf\classes.dex" />
     </item>
     <item
         jar="D:\my\AndroidProject\source\LibTest\app\build\intermediates\exploded-aar\LibTest\shenlib\unspecified\jars\libs\gson-2.6.2.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="4de047d3855eea9f776847890f99fbceb167489a">
+        sha1="f1d9fe32a9f96a8ad029f45337518c093cfa1182">
         <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\debug\folders\1000\8\gson-2.6.2_b37d92deeaf363c3fe739ab0c61446e8e078a3e1\classes.dex" />
     </item>
 

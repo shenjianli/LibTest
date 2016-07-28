@@ -1,61 +1,69 @@
 package com.shenjianli.lib.adapter;
 
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.shenjianli.lib.R;
 import com.shenjianli.lib.data.DemoData;
+import com.shenjianli.shenlib.base.BaseAdapter;
 
 import java.util.List;
 
 /**
  * Created by edianzu on 2016/7/25.
  */
-public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.DemoViewHolder>{
+public class RecylerViewAdapter extends BaseAdapter<DemoData,DemoViewHolder> {
 
-    private List<DemoData> demoDatas;
-    public RecylerViewAdapter(List<DemoData> demoDatas){
-        this.demoDatas = demoDatas;
-    }
-    @Override
-    public DemoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // 加载数据item的布局，生成VH返回
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recylerview_layout, parent, false);
-        return new DemoViewHolder(v);
+    public OnDemoClickListener getOnDemoClickListener() {
+        return mOnDemoClickListener;
     }
 
-    @Override
-    public void onBindViewHolder(DemoViewHolder holder, int position) {
-        // 数据绑定
-        //ImageLoader.getInstance().displayImage(picUrls[i], demoViewHolder.imavPic);
-        holder.imavPic.setImageResource(demoDatas.get(position).getImgId());
-        holder.tvUrl.setText(demoDatas.get(position).getName());
+    public void setOnDemoClickListener(OnDemoClickListener mOnDemoClickListener) {
+        this.mOnDemoClickListener = mOnDemoClickListener;
+    }
+
+    OnDemoClickListener mOnDemoClickListener;
+    public RecylerViewAdapter(Context context) {
+        super(context);
+    }
+
+    public RecylerViewAdapter(Context context, List<DemoData> list) {
+        super(context, list);
     }
 
     @Override
-    public int getItemCount() {
-        // 返回数据有多少条
-        if (null == demoDatas) {
-            return 0;
+    public int getCustomViewType(int position) {
+        return 0;
+    }
+
+    @Override
+    public DemoViewHolder createCustomViewHolder(ViewGroup parent, int viewType) {
+        return new DemoViewHolder(parent, R.layout.item_recylerview_layout);
+    }
+
+    @Override
+    public void bindCustomViewHolder(DemoViewHolder holder, final int position) {
+        DemoData demoData = getItem(position);
+        holder.imavPic.setImageResource(demoData.getImgId());
+        holder.tvUrl.setText(demoData.getName());
+        if (mOnDemoClickListener != null) {
+            holder.imavPic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnDemoClickListener.onClick(position);
+                }
+            });
+            holder.tvUrl.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnDemoClickListener.onClick(position);
+                }
+            });
         }
-        return demoDatas.size();
     }
 
-    // 可复用的VH
-    public static class DemoViewHolder extends RecyclerView.ViewHolder {
-        // 大图
-        public ImageView imavPic;
-        // 图片url
-        public TextView tvUrl;
-
-        public DemoViewHolder(View itemView) {
-            super(itemView);
-            imavPic = (ImageView) itemView.findViewById(R.id.imavPic);
-            tvUrl = (TextView) itemView.findViewById(R.id.tvUrl);
-        }
+    public interface OnDemoClickListener {
+        void onClick(int position);
     }
 }
