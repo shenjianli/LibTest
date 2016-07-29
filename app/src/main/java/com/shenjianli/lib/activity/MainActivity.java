@@ -1,6 +1,7 @@
 package com.shenjianli.lib.activity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -19,6 +20,7 @@ import com.shenjianli.lib.bean.WeatherJson;
 import com.shenjianli.lib.data.DemoData;
 import com.shenjianli.lib.service.BackgroundMonitorService;
 import com.shenjianli.shenlib.base.BaseActivity;
+import com.shenjianli.shenlib.base.DividerDecoration;
 import com.shenjianli.shenlib.net.NetClient;
 import com.shenjianli.shenlib.net.RetrofitCallback;
 import com.shenjianli.shenlib.receiver.NetBroadcastReceiver;
@@ -61,7 +63,20 @@ public class MainActivity extends BaseActivity implements NetBroadcastReceiver.N
         startService(new Intent(this, BackgroundMonitorService.class));
 
         initData();
-        adapter = new RecylerViewAdapter(mDemoDatas);
+        adapter = new RecylerViewAdapter(this,mDemoDatas);
+        adapter.setOnDemoClickListener(new RecylerViewAdapter.OnDemoClickListener() {
+            @Override
+            public void onClick(int position) {
+                switch (position){
+                    case 0:
+                        Intent intent = new Intent(MainActivity.this,RecyclerViewMainActivity.class);
+                        startActivity(intent);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
         initRecylerView();
     }
 
@@ -130,7 +145,14 @@ item布局
 
         // 设置布局管理器
         recyclerView.setLayoutManager(linearLayoutManager);
+        DividerDecoration decoration = new DividerDecoration(this, DividerDecoration.VERTICAL_LIST);
+        Drawable drawable = getResources().getDrawable(R.drawable.divider_single);
+        decoration.setDivider(drawable);
 
+//        decoration.getItemOffsets();
+        recyclerView.addItemDecoration(decoration);
+        //recyclerView.addItemDecoration(new SpacesItemDecoration(10));
+        // recyclerView.addItemDecoration(new DividerDecoration(this, DividerDecoration.VERTICAL_LIST));
         recyclerView.setAdapter(adapter);
 
         recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
