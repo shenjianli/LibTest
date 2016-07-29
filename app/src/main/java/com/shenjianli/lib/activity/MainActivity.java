@@ -71,6 +71,10 @@ public class MainActivity extends BaseActivity implements NetBroadcastReceiver.N
         demodata.setImgId(R.drawable.ic_launcher);
         demodata.setName("RecyclerView Demo");
         mDemoDatas.add(demodata);
+        demodata = new DemoData();
+        demodata.setImgId(R.drawable.ic_launcher);
+        demodata.setName("RxAndroid");
+        mDemoDatas.add(demodata);
         for (int i = 0; i < 5; i++) {
             demodata = new DemoData();
             demodata.setImgId(R.drawable.ic_launcher);
