@@ -67,9 +67,14 @@ public class MainActivity extends BaseActivity implements NetBroadcastReceiver.N
         adapter.setOnDemoClickListener(new RecylerViewAdapter.OnDemoClickListener() {
             @Override
             public void onClick(int position) {
+                Intent intent;
                 switch (position){
                     case 0:
-                        Intent intent = new Intent(MainActivity.this,RecyclerViewMainActivity.class);
+                        intent = new Intent(MainActivity.this,RecyclerViewMainActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        intent = new Intent(MainActivity.this,RxAndroidActivity.class);
                         startActivity(intent);
                         break;
                     default:
