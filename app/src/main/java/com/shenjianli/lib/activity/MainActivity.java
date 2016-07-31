@@ -8,8 +8,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -77,6 +75,10 @@ public class MainActivity extends BaseActivity implements NetBroadcastReceiver.N
                         intent = new Intent(MainActivity.this,RxAndroidActivity.class);
                         startActivity(intent);
                         break;
+                    case 2:
+                        intent = new Intent(MainActivity.this,RxJavaActivity.class);
+                        startActivity(intent);
+                        break;
                     default:
                         break;
                 }
@@ -87,14 +89,22 @@ public class MainActivity extends BaseActivity implements NetBroadcastReceiver.N
 
     private void initData() {
         mDemoDatas = new ArrayList<>();
+
         DemoData demodata = new DemoData();
         demodata.setImgId(R.drawable.ic_launcher);
         demodata.setName("RecyclerView Demo");
         mDemoDatas.add(demodata);
+
         demodata = new DemoData();
         demodata.setImgId(R.drawable.ic_launcher);
         demodata.setName("RxAndroid");
         mDemoDatas.add(demodata);
+
+        demodata = new DemoData();
+        demodata.setImgId(R.drawable.ic_launcher);
+        demodata.setName("RxJava");
+        mDemoDatas.add(demodata);
+
         for (int i = 0; i < 5; i++) {
             demodata = new DemoData();
             demodata.setImgId(R.drawable.ic_launcher);
@@ -159,30 +169,6 @@ item布局
         //recyclerView.addItemDecoration(new SpacesItemDecoration(10));
         // recyclerView.addItemDecoration(new DividerDecoration(this, DividerDecoration.VERTICAL_LIST));
         recyclerView.setAdapter(adapter);
-
-        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                return false;
-            }
-
-            @Override
-            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-                if(MotionEvent.ACTION_UP == e.getAction()){
-                    View childView = recyclerView.findChildViewUnder(e.getX(), e.getY());
-                   int position = rv.getChildAdapterPosition(childView);
-                    if(0 == position){
-                        Intent intent = new Intent(MainActivity.this,RecyclerViewMainActivity.class);
-                        startActivity(intent);
-                    }
-                }
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-            }
-        });
 
         // 模拟下拉刷新
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

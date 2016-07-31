@@ -29,6 +29,9 @@ import rx.schedulers.Schedulers;
 
 /**
  * Created by shenjianli on 16/7/29.
+ *
+ * http://www.cnblogs.com/shuijilove/p/5316971.html
+ *
  */
 public class RxAndroidActivity extends AppCompatActivity {
 
@@ -46,7 +49,7 @@ public class RxAndroidActivity extends AppCompatActivity {
 
     @OnClick(R.id.click_me_BN)
     public void onClick() {
-        getMovie2();
+        getMovie3();
     }
 
     //进行网络请求
@@ -147,6 +150,6 @@ public class RxAndroidActivity extends AppCompatActivity {
         };
         HttpMethods.getInstance().getTopMovieNew(subscriber,0,10);
         //取消网络请求
-        subscriber.unsubscribe();
+        //subscriber.unsubscribe();
     }
 }

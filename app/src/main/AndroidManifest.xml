@@ -29,6 +29,7 @@
         <activity android:name=".engine.recyclerview.single.SingleActivity"/>
         <activity android:name=".activity.RecyclerViewMainActivity"/>
         <activity android:name=".activity.RxAndroidActivity"/>
+        <activity android:name=".activity.RxJavaActivity"/>
         <service android:name=".service.BackgroundMonitorService"/>
 
     </application>
