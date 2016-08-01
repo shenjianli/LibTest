@@ -2,56 +2,41 @@
 
 package com.shenjianli.lib.engine.rxjava.adapter;
 
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.content.Context;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.shenjianli.lib.R;
 import com.shenjianli.lib.engine.rxjava.model.Item;
+import com.shenjianli.shenlib.base.BaseAdapter;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
-public class ItemListAdapter extends RecyclerView.Adapter {
-    List<Item> images;
+public class ItemListAdapter extends BaseAdapter<Item,DebounceViewHolder>{
 
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item, parent, false);
-        return new DebounceViewHolder(view);
+    public ItemListAdapter(Context context) {
+        super(context);
+    }
+
+    public ItemListAdapter(Context context, List<Item> list) {
+        super(context, list);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        DebounceViewHolder debounceViewHolder = (DebounceViewHolder) holder;
-        Item image = images.get(position);
-        Glide.with(holder.itemView.getContext()).load(image.imageUrl).into(debounceViewHolder.imageIv);
-        debounceViewHolder.descriptionTv.setText(image.description);
+    public DebounceViewHolder createCustomViewHolder(ViewGroup parent, int viewType) {
+        return new DebounceViewHolder(parent,R.layout.grid_item);
     }
 
     @Override
-    public int getItemCount() {
-        return images == null ? 0 : images.size();
+    public void bindCustomViewHolder(DebounceViewHolder holder, int position) {
+        Item image = getItem(position);
+        Glide.with(holder.itemView.getContext()).load(image.imageUrl).into(holder.imageIv);
+        holder.descriptionTv.setText(image.description);
     }
 
-    public void setItems(List<Item> images) {
-        this.images = images;
-        notifyDataSetChanged();
+    @Override
+    public int getCustomViewType(int position) {
+        return 0;
     }
-
-    static class DebounceViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.imageIv) ImageView imageIv;
-        @Bind(R.id.descriptionTv) TextView descriptionTv;
-        public DebounceViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-    }
-
 }

@@ -2,6 +2,7 @@
 
 package com.shenjianli.lib.engine.rxjava.module.elementary_1;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,7 +17,7 @@ import android.widget.Toast;
 
 import com.shenjianli.lib.R;
 import com.shenjianli.lib.engine.rxjava.BaseFragment;
-import com.shenjianli.lib.engine.rxjava.adapter.ZhuangbiListAdapter;
+import com.shenjianli.lib.engine.rxjava.adapter.BasicListAdapter;
 import com.shenjianli.lib.engine.rxjava.model.ZhuangbiImage;
 import com.shenjianli.lib.engine.rxjava.network.Network;
 
@@ -35,7 +36,8 @@ public class ElementaryFragment extends BaseFragment {
     @Bind(R.id.gridRv)
     RecyclerView gridRv;
 
-    ZhuangbiListAdapter adapter = new ZhuangbiListAdapter();
+    private Context context;
+    BasicListAdapter adapter;
     Observer<List<ZhuangbiImage>> observer = new Observer<List<ZhuangbiImage>>() {
         @Override
         public void onCompleted() {
@@ -50,7 +52,7 @@ public class ElementaryFragment extends BaseFragment {
         @Override
         public void onNext(List<ZhuangbiImage> images) {
             swipeRefreshLayout.setRefreshing(false);
-            adapter.setImages(images);
+            adapter.fillList(images);
         }
     };
 
@@ -58,7 +60,7 @@ public class ElementaryFragment extends BaseFragment {
     void onTagChecked(RadioButton searchRb, boolean checked) {
         if (checked) {
             unsubscribe();
-            adapter.setImages(null);
+            adapter.fillList(null);
             swipeRefreshLayout.setRefreshing(true);
             search(searchRb.getText().toString());
         }
@@ -79,11 +81,18 @@ public class ElementaryFragment extends BaseFragment {
         ButterKnife.bind(this, view);
 
         gridRv.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        adapter = new BasicListAdapter(context);
         gridRv.setAdapter(adapter);
         swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.GREEN, Color.RED, Color.YELLOW);
         swipeRefreshLayout.setEnabled(false);
 
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 
     @Override

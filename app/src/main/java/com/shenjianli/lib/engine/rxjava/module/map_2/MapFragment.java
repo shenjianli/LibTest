@@ -2,6 +2,7 @@
 
 package com.shenjianli.lib.engine.rxjava.module.map_2;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -41,7 +42,8 @@ public class MapFragment extends BaseFragment {
     @Bind(R.id.gridRv)
     RecyclerView gridRv;
 
-    ItemListAdapter adapter = new ItemListAdapter();
+    private Context context;
+    ItemListAdapter adapter;
     Observer<List<Item>> observer = new Observer<List<Item>>() {
         @Override
         public void onCompleted() {
@@ -57,7 +59,7 @@ public class MapFragment extends BaseFragment {
         public void onNext(List<Item> images) {
             swipeRefreshLayout.setRefreshing(false);
             pageTv.setText(getString(R.string.page_with_number, page));
-            adapter.setItems(images);
+            adapter.fillList(images);
         }
     };
 
@@ -95,10 +97,17 @@ public class MapFragment extends BaseFragment {
         ButterKnife.bind(this, view);
 
         gridRv.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        adapter = new ItemListAdapter(context);
         gridRv.setAdapter(adapter);
         swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.GREEN, Color.RED, Color.YELLOW);
         swipeRefreshLayout.setEnabled(false);
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 
     @Override

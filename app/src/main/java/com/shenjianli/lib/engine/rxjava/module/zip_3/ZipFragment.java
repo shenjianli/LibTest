@@ -2,6 +2,7 @@
 
 package com.shenjianli.lib.engine.rxjava.module.zip_3;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -38,7 +39,9 @@ public class ZipFragment extends BaseFragment {
     RecyclerView gridRv;
     @Bind(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
-    ItemListAdapter adapter = new ItemListAdapter();
+    ItemListAdapter adapter;
+
+    private Context context;
 
     Observer<List<Item>> observer = new Observer<List<Item>>() {
         @Override
@@ -54,7 +57,7 @@ public class ZipFragment extends BaseFragment {
         @Override
         public void onNext(List<Item> items) {
             swipeRefreshLayout.setRefreshing(false);
-            adapter.setItems(items);
+            adapter.fillList(items);
         }
     };
 
@@ -92,12 +95,17 @@ public class ZipFragment extends BaseFragment {
         ButterKnife.bind(this, view);
 
         gridRv.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        adapter = new ItemListAdapter(context);
         gridRv.setAdapter(adapter);
         swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.GREEN, Color.RED, Color.YELLOW);
         swipeRefreshLayout.setEnabled(false);
         return view;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
 
     @Override
     protected int getDialogRes() {
