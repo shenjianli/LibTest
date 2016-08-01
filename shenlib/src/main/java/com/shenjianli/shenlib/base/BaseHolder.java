@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+
 /**
  * 基础的ViewHolder</br>
  * ViewHolder只作View的缓存,不关心数据内容
@@ -27,6 +29,7 @@ public class BaseHolder extends RecyclerView.ViewHolder {
     public BaseHolder(ViewGroup parent, @LayoutRes int resId) {
         super(LayoutInflater.from(parent.getContext()).inflate(resId, parent, false));
         viewArray = new SparseArray<>();
+        ButterKnife.bind(this, itemView);
     }
 
     /**
@@ -37,6 +40,7 @@ public class BaseHolder extends RecyclerView.ViewHolder {
     public BaseHolder(View view) {
         super(view);
         viewArray = new SparseArray<>();
+        ButterKnife.bind(this, itemView);
     }
 
     /**
