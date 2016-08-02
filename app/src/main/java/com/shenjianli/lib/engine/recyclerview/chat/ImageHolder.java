@@ -6,6 +6,8 @@ import android.widget.ImageView;
 
 import com.shenjianli.lib.R;
 
+import butterknife.Bind;
+
 
 /**
  * 表情消息的Holder
@@ -13,10 +15,11 @@ import com.shenjianli.lib.R;
  */
 public class ImageHolder extends ChatHolder {
 
+    @Bind(R.id.content_iv)
     ImageView contentIv;
 
     public ImageHolder(ViewGroup parent, @LayoutRes int resId) {
         super(parent, resId);
-        contentIv = getView(R.id.content_iv);
+        //contentIv = getView(R.id.content_iv);
     }
 }

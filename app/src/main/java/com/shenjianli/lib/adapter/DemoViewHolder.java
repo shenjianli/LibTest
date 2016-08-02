@@ -9,24 +9,24 @@ import android.widget.TextView;
 import com.shenjianli.lib.R;
 import com.shenjianli.shenlib.base.BaseHolder;
 
+import butterknife.Bind;
+
 /**
  * Created by edianzu on 2016/7/27.
  */
 public class DemoViewHolder extends BaseHolder{
     // 大图
+    @Bind(R.id.imavPic)
     ImageView imavPic;
     // 图片url
+    @Bind(R.id.tvUrl)
     TextView tvUrl;
 
     public DemoViewHolder(ViewGroup parent, @LayoutRes int resId) {
         super(parent, resId);
-        imavPic = getView(R.id.imavPic);
-        tvUrl = getView(R.id.tvUrl);
     }
 
     public DemoViewHolder(View view) {
         super(view);
-        imavPic = getView(R.id.imavPic);
-        tvUrl = getView(R.id.tvUrl);
     }
 }

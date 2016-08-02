@@ -33,12 +33,19 @@ public abstract class BaseAdapter<M, VH extends BaseHolder> extends AbsAdapter<M
      * @return true:填充成功并调用刷新数据
      */
     public boolean fillList(List<M> list) {
-        dataList.clear();
-        boolean result = dataList.addAll(list);
-        if (result) {
+        if(null != list){
+            dataList.clear();
+            boolean result = dataList.addAll(list);
+            if (result) {
+                notifyDataSetChanged();
+            }
+            return result;
+        }
+        else {
+            dataList.clear();
             notifyDataSetChanged();
         }
-        return result;
+        return false;
     }
 
     /**

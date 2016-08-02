@@ -1,10 +1,8 @@
 package com.shenjianli.shenlib.base;
 
 import android.content.Context;
-import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.RecyclerView;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,7 @@ import butterknife.ButterKnife;
  */
 public class BaseHolder extends RecyclerView.ViewHolder {
 
-    private SparseArray<View> viewArray;
+    //private SparseArray<View> viewArray;
 
     /**
      * 构造ViewHolder
@@ -28,7 +26,7 @@ public class BaseHolder extends RecyclerView.ViewHolder {
      */
     public BaseHolder(ViewGroup parent, @LayoutRes int resId) {
         super(LayoutInflater.from(parent.getContext()).inflate(resId, parent, false));
-        viewArray = new SparseArray<>();
+        //viewArray = new SparseArray<>();
         ButterKnife.bind(this, itemView);
     }
 
@@ -39,7 +37,7 @@ public class BaseHolder extends RecyclerView.ViewHolder {
      */
     public BaseHolder(View view) {
         super(view);
-        viewArray = new SparseArray<>();
+        //viewArray = new SparseArray<>();
         ButterKnife.bind(this, itemView);
     }
 
@@ -50,14 +48,14 @@ public class BaseHolder extends RecyclerView.ViewHolder {
      * @param <T>    View的类型
      * @return view
      */
-    protected <T extends View> T getView(@IdRes int viewId) {
-        View view = viewArray.get(viewId);
-        if (view == null) {
-            view = itemView.findViewById(viewId);
-            viewArray.put(viewId, view);
-        }
-        return (T) view;
-    }
+//    protected <T extends View> T getView(@IdRes int viewId) {
+//        View view = viewArray.get(viewId);
+//        if (view == null) {
+//            view = itemView.findViewById(viewId);
+//            viewArray.put(viewId, view);
+//        }
+//        return (T) view;
+//    }
 
     /**
      * 获取Context实例
