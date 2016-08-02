@@ -38,7 +38,6 @@ dependencies {
     compile 'com.android.support:support-v13:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile project(':shenlib')
-    compile files('libs/fastjson_1.1.33.jar')
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
     compile files('libs/adapter-rxjava-2.0.2.jar')
