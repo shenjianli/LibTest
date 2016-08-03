@@ -4,21 +4,30 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 
 import com.shenjianli.lib.R;
 import com.shenjianli.lib.engine.recyclerview.chat.ChatActivity;
 import com.shenjianli.lib.engine.recyclerview.multi.MultiActivity;
 import com.shenjianli.lib.engine.recyclerview.single.SingleActivity;
+import com.shenjianli.lib.engine.recyclerview.staggered.StaggeredActivity;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class RecyclerViewMainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+    @Bind(R.id.staggered_btn)
+    Button staggeredBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recyclerview_main);
+        ButterKnife.bind(this);
     }
 
     public void onClick(View view) {
@@ -43,5 +52,11 @@ public class RecyclerViewMainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, MultiActivity.class));
                 break;
         }
+    }
+
+    @OnClick(R.id.staggered_btn)
+    public void onClick() {
+        Intent intent = new Intent(RecyclerViewMainActivity.this, StaggeredActivity.class);
+        startActivity(intent);
     }
 }

@@ -72,4 +72,14 @@
         android:textAllCaps="false"
         android:textSize="20sp"
         android:onClick="onClick"/>
+    <Button
+        android:id="@+id/staggered_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="staggered"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+     />
+
 </LinearLayout>
