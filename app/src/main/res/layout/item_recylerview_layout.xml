@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="#00ff00"
     android:layout_margin="5dp"
     >
     <ImageView
@@ -16,7 +15,8 @@
     <View
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:background="@android:color/black"/>
+        android:background="@android:color/black"
+        android:visibility="gone"/>
     <TextView
         android:id="@+id/tvUrl"
         android:layout_width="0dp"
