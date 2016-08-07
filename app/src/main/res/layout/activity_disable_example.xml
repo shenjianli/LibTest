@@ -5,6 +5,6 @@
     android:id="@+id/activity_disable_example"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.xrecyclerview.DisableExampleActivity">
+    >
 
 </android.support.constraint.ConstraintLayout>
