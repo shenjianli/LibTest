@@ -31,6 +31,14 @@
         <activity android:name=".activity.RxAndroidActivity"/>
         <activity android:name=".activity.RxJavaActivity"/>
         <activity android:name=".engine.recyclerview.staggered.StaggeredActivity"/>
+        <activity android:name=".engine.recyclerview.refresh.DisableExampleActivity"/>
+        <activity android:name=".engine.recyclerview.refresh.EmptyViewActivity"/>
+        <activity android:name=".engine.recyclerview.refresh.GridActivity"/>
+        <activity android:name=".engine.recyclerview.refresh.LinearActivity"/>
+        <activity android:name=".engine.recyclerview.refresh.StaggeredGridActivity"/>
+        <activity android:name=".engine.recyclerview.refresh.CollapsingToolbarLayoutActivity"/>
+        <activity android:name=".engine.recyclerview.refresh.MultiHeaderActivity"/>
+        <activity android:name=".engine.recyclerview.refresh.RefreshMainActivity"/>
         <service android:name=".service.BackgroundMonitorService"/>
 
     </application>
