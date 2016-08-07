@@ -16,6 +16,7 @@ import com.shenjianli.lib.adapter.RecylerViewAdapter;
 import com.shenjianli.lib.api.ApiStores;
 import com.shenjianli.lib.bean.WeatherJson;
 import com.shenjianli.lib.data.DemoData;
+import com.shenjianli.lib.engine.recyclerview.refresh.RefreshMainActivity;
 import com.shenjianli.lib.service.BackgroundMonitorService;
 import com.shenjianli.shenlib.base.BaseActivity;
 import com.shenjianli.shenlib.base.DividerDecoration;
@@ -79,6 +80,10 @@ public class MainActivity extends BaseActivity implements NetBroadcastReceiver.N
                         intent = new Intent(MainActivity.this,RxJavaActivity.class);
                         startActivity(intent);
                         break;
+                    case 3:
+                        intent = new Intent(MainActivity.this, RefreshMainActivity.class);
+                        startActivity(intent);
+                        break;
                     default:
                         break;
                 }
@@ -103,6 +108,11 @@ public class MainActivity extends BaseActivity implements NetBroadcastReceiver.N
         demodata = new DemoData();
         demodata.setImgId(R.drawable.ic_launcher);
         demodata.setName("RxJava");
+        mDemoDatas.add(demodata);
+
+        demodata = new DemoData();
+        demodata.setImgId(R.drawable.ic_launcher);
+        demodata.setName("PullRefresh");
         mDemoDatas.add(demodata);
 
         for (int i = 0; i < 5; i++) {
