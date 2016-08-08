@@ -38,8 +38,8 @@ public class StaggeredGridActivity extends AppCompatActivity {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-        mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
+        mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallBeat);
+        mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.Pacman);
         mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
 
         View header =   LayoutInflater.from(this).inflate(R.layout.recyclerview_header, (ViewGroup)findViewById(android.R.id.content),false);
@@ -95,7 +95,7 @@ public class StaggeredGridActivity extends AppCompatActivity {
         for(int i = 0; i < 25 ;i++){
             listData.add("item" + i);
         }
-        mAdapter = new MyAdapter(listData);
+        mAdapter = new MyAdapter(this,listData);
 
         mRecyclerView.setAdapter(mAdapter);
     }

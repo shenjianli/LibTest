@@ -33,7 +33,7 @@ public class DisableExampleActivity extends AppCompatActivity {
         for(int i = 0; i < 15 ;i++){
             listData.add("item" + i);
         }
-        mAdapter = new MyAdapter(listData);
+        mAdapter = new MyAdapter(this,listData);
         mRecyclerView.setAdapter(mAdapter);
 
     }

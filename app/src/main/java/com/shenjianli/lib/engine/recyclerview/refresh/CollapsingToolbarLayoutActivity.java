@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
@@ -22,9 +23,9 @@ public class CollapsingToolbarLayoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collapsing_toolbar_layout);
-//        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mRecyclerView = (XRecyclerView)this.findViewById(R.id.recyclerview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -85,7 +86,7 @@ public class CollapsingToolbarLayoutActivity extends AppCompatActivity {
         for(int i = 0; i < 15 ;i++){
             listData.add("item" + i);
         }
-        mAdapter = new MyAdapter(listData);
+        mAdapter = new MyAdapter(this,listData);
         mRecyclerView.setAdapter(mAdapter);
     }
 
