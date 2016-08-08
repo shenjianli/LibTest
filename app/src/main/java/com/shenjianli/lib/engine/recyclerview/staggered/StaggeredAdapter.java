@@ -2,7 +2,6 @@ package com.shenjianli.lib.engine.recyclerview.staggered;
 
 import android.content.Context;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.shenjianli.lib.R;
@@ -36,8 +35,8 @@ public class StaggeredAdapter extends BaseAdapter<Item,StaggeredHolder>{
 
     @Override
     public void bindCustomViewHolder(StaggeredHolder holder, int position) {
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,position * 50 + 930);
-        holder.itemView.setLayoutParams(params);
+//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,position * 50 + 930);
+//        holder.itemView.setLayoutParams(params);
         Item item = getItem(position);
         Glide.with(holder.itemView.getContext()).load(item.imageUrl).into(holder.staggeredItemImg);
         holder.staggeredItemTitle.setText(item.description);
