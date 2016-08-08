@@ -32,8 +32,8 @@ public class CollapsingToolbarLayoutActivity extends AppCompatActivity {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-        mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
+        mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallBeat);
+        mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallClipRotateMultiple);
         mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
         mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
