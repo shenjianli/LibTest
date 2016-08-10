@@ -35,8 +35,8 @@ public class MultiHeaderActivity extends AppCompatActivity {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-        mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
+        mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallScaleRippleMultiple);
+        mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallTrianglePath);
         mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
 
         View header = LayoutInflater.from(this).inflate(R.layout.recyclerview_header, (ViewGroup)findViewById(android.R.id.content),false);
