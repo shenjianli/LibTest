@@ -33,8 +33,8 @@ public class GridActivity extends AppCompatActivity {
         GridLayoutManager layoutManager = new GridLayoutManager(this,3);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-        mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
+        mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallGridPulse);
+        mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallClipRotatePulse);
         mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
 
         mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
