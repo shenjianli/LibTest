@@ -1,9 +1,8 @@
 package com.shenjianli.lib;
 
-import android.app.Application;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.provider.Settings;
+import android.support.multidex.MultiDexApplication;
 
 import com.shenjianli.shenlib.LibApp;
 import com.shenjianli.shenlib.base.ActivityManager;
@@ -15,7 +14,7 @@ import com.shenjianli.shenlib.util.LogUtils;
 /**
  * Created by edianzu on 2016/7/14.
  */
-public class MobileApp extends Application{
+public class MobileApp extends MultiDexApplication{
 
     private static MobileApp mMobileApp;
 
