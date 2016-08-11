@@ -36,6 +36,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ *
+ */
 public class MainActivity extends BaseActivity implements NetBroadcastReceiver.NetStateChangeListener {
 
     @Bind(R.id.button)
@@ -255,9 +258,9 @@ item布局
     @Override
     public void onNetChange(boolean connect) {
         if (connect) {
-            CustomToast.show(this, "亲，网络恢复啦！");
+            CustomToast.show(this, "真好,网络正常啦！");
         } else {
-            CustomToast.show(this, "亲，网络断开了！");
+            CustomToast.show(this, "糟糕，网络断开了！");
         }
     }
 
