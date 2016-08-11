@@ -138,7 +138,5 @@ public class CacheInterceptor implements Interceptor{
 File cacheFile = new File(LibApp.getLibInstance().getMobileContext().getExternalCacheDir(), "MallCache");Cache cache = new Cache(cacheFile, Constants.CACHE_SIZE);
 builder.cache(cache).addInterceptor(new CacheInterceptor());
 ```
-其中builder为
-``` java
-  OkHttpClient.Builder builder = new OkHttpClient.Builder();
-```
+这步主要作用是向OKHttpClient中加入缓存拦截器来进行数据缓存。
+
