@@ -28,7 +28,7 @@ public class NetClient {
         if (retrofit == null) {
 	         OkHttpClient.Builder builder = new OkHttpClient.Builder();
             /**
-             *设置缓存，代码略
+             *设置缓存
              */
 	         File cacheFile = new File(LibApp.getLibInstance().getMobileContext().getExternalCacheDir(), "MallCache");
 	         Cache cache = new Cache(cacheFile, Constants.CACHE_SIZE);
