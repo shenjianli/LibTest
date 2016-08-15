@@ -2,17 +2,15 @@ package com.shenjianli.lib.engine.home.bean;
 
 import java.util.List;
 
-import com.icbc.bean.Product2;
-
 public class ItemData {
 
-	private List<Product2> industry;
+	private List<ProductBean> industry;
 
-	public List<Product2> getIndustry() {
+	public List<ProductBean> getIndustry() {
 		return industry;
 	}
 
-	public void setIndustry(List<Product2> industry) {
+	public void setIndustry(List<ProductBean> industry) {
 		this.industry = industry;
 	}
 
