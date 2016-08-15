@@ -9,7 +9,7 @@ public class MallBean<T> {
 
     private String isReview;
     private String message;
-    private String status;
+    private int status;
     private String type;
     private List<?> datas;
 
@@ -29,14 +29,6 @@ public class MallBean<T> {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getType() {
@@ -62,5 +54,13 @@ public class MallBean<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

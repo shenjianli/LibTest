@@ -1,38 +1,31 @@
 package com.shenjianli.lib.engine.home;
 
-import com.shenjianli.lib.engine.home.bean.ChoicenessRes;
-import com.shenjianli.lib.engine.home.bean.ItemRes;
-import com.shenjianli.lib.engine.home.bean.PlatformRes;
-import com.shenjianli.lib.engine.home.bean.ProjectRes;
-import com.shenjianli.lib.engine.home.bean.SecKillRes;
-import com.shenjianli.lib.engine.home.bean.SlideRes;
+import com.shenjianli.lib.engine.home.bean.ChoicenessData;
+import com.shenjianli.lib.engine.home.bean.PlatformData;
+import com.shenjianli.lib.engine.home.bean.ProjectData;
+import com.shenjianli.lib.engine.home.bean.SecKillData;
+import com.shenjianli.lib.engine.home.bean.SlideData;
+import com.shenjianli.lib.engine.rxjava.model.Item;
 import com.shenjianli.shenlib.net.NetClient;
-import com.shenjianli.shenlib.net.RetrofitCallback;
 import com.shenjianli.shenlib.util.LogUtils;
 
-import retrofit2.Call;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 
 public class PreHomeDataManager {
 
 	private final String TAG = this.getClass().getSimpleName();
 	
-	private Call<SlideRes> slideData;
-	private Call<PlatformRes> platformData;
-	private Call<SecKillRes> secKillData;
-	private Call<ProjectRes> themeData;
-	private Call<ItemRes> itemData;
-	private Call<ChoicenessRes> choicenessData;
-
-	private SlideRes mSlideRes;
-	private PlatformRes mPlatformRes;
-	private SecKillRes mSecKillRes;
-	private ProjectRes mProjectRes;
-	private ItemRes mItemRes;
-	private ChoicenessRes mChoicenessRes;
+	private SlideData mSlideData;
+	private PlatformData mPlatformData;
+	private SecKillData mSecKillData;
+	private ProjectData mProjectData;
+	private Item mItem;
+	private ChoicenessData mChoicenessData;
 	
 	private PreHomeDataManager() {
-
 	}
 
 	private static PreHomeDataManager mPreHomeDataManager = new PreHomeDataManager();
@@ -54,153 +47,136 @@ public class PreHomeDataManager {
 		LogUtils.i( TAG + "开始预加载首页数据");
 		HomeService homeService = NetClient.retrofit().create(HomeService.class);
 
-		slideData = homeService.getSlideData();
-		platformData = homeService.getPlatformData();
-		secKillData = homeService.getSecKillData();
-		themeData = homeService.getThemeData();
-		itemData = homeService.getItemData();
-		choicenessData = homeService.getChoicenessData("1");
-		
-		slideData.enqueue(new RetrofitCallback<SlideRes>() {
+		homeService.getSlideData().map(new HttpResultFunc<SlideData>())
+					.subscribeOn(Schedulers.io())
+					.unsubscribeOn(Schedulers.io())
+					.observeOn(AndroidSchedulers.mainThread())
+					.subscribe(new Subscriber<SlideData>() {
+						@Override
+						public void onCompleted() {
 
+						}
+
+						@Override
+						public void onError(Throwable e) {
+
+						}
+
+						@Override
+						public void onNext(SlideData slideData) {
+
+						}
+					});
+
+
+		homeService.getPlatformData().map(new HttpResultFunc<PlatformData>())
+		.subscribeOn(Schedulers.io())
+		.unsubscribeOn(Schedulers.io())
+		.observeOn(AndroidSchedulers.mainThread())
+		.subscribe(new Subscriber<PlatformData>() {
 			@Override
-			public void onSuccess(SlideRes responseData) {
-				setSlideRes(responseData);
-				LogUtils.i( TAG + " 预加载---轮播图----请求成功");
-			}
-
-			@Override
-			public void onFail(String errorMsg) {
-				LogUtils.i( TAG + " 预加载---轮播图----请求失败:" + errorMsg);
-				
-			}
-		});
-
-		platformData.enqueue(new RetrofitCallback<PlatformRes>() {
-
-			@Override
-			public void onSuccess(PlatformRes responseData) {
-				setmPlatformRes(responseData);
-				LogUtils.i( TAG + " 预加载---快速入口----请求成功");
-				
-			}
-
-			@Override
-			public void onFail(String errorMsg) {
-				LogUtils.i( TAG + " 预加载---快速入口----快速入口:" + errorMsg);
-				
-			}
-		});
-
-		secKillData.enqueue(new RetrofitCallback<SecKillRes>() {
-
-			@Override
-			public void onSuccess(SecKillRes responseData) {
-				setSecKillRes(responseData);
-				LogUtils.i( TAG + " 预加载---秒杀---请求成功");
+			public void onCompleted() {
 
 			}
 
 			@Override
-			public void onFail(String errorMsg) {
-				LogUtils.i( TAG + " 预加载---秒杀---请求失败:" + errorMsg);
+			public void onError(Throwable e) {
+
+			}
+
+			@Override
+			public void onNext(PlatformData platformData) {
 
 			}
 		});
-		themeData.enqueue(new RetrofitCallback<ProjectRes>() {
+		homeService.getSecKillData().map(new HttpResultFunc<SecKillData>())
+				.subscribeOn(Schedulers.io())
+				.unsubscribeOn(Schedulers.io())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(new Subscriber<SecKillData>() {
+					@Override
+					public void onCompleted() {
 
-			@Override
-			public void onSuccess(ProjectRes responseData) {
-				setProjectRes(responseData);
-				LogUtils.i( TAG + " 预加载---专题---请求成功");
+					}
 
-			}
+					@Override
+					public void onError(Throwable e) {
 
-			@Override
-			public void onFail(String errorMsg) {
+					}
 
-				LogUtils.i( TAG + " 预加载---专题---请求失败:" + errorMsg);
-			}
-		});
+					@Override
+					public void onNext(SecKillData secKillData) {
 
-		itemData.enqueue(new RetrofitCallback<ItemRes>() {
+					}
+				});
 
-			@Override
-			public void onSuccess(ItemRes responseData) {
-				setItemRes(responseData);
-				LogUtils.i( TAG + " 预加载---行业精选---请求成功");
 
-			}
+		homeService.getThemeData()
+				.map(new HttpResultFunc<ProjectData>())
+				.subscribeOn(Schedulers.io())
+				.unsubscribeOn(Schedulers.io())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(new Subscriber<ProjectData>() {
+					@Override
+					public void onCompleted() {
 
-			@Override
-			public void onFail(String errorMsg) {
+					}
 
-				LogUtils.i( TAG + " 预加载---行业精选---请求失败:" + errorMsg);
-			}
-		});
+					@Override
+					public void onError(Throwable e) {
 
-		choicenessData.enqueue(new RetrofitCallback<ChoicenessRes>() {
+					}
 
-			@Override
-			public void onSuccess(ChoicenessRes responseData) {
-				setChoicenessRes(responseData);
-				LogUtils.i( TAG + " 预加载---热卖商品---请求成功");
-			}
+					@Override
+					public void onNext(ProjectData projectData) {
 
-			@Override
-			public void onFail(String errorMsg) {
+					}
+			});
 
-				LogUtils.i( TAG + " 预加载---热卖商品---请求失败:" + errorMsg);
-			}
-		});
-	}
 
-	public SlideRes getSlideRes() {
-		return mSlideRes;
-	}
+		homeService.getItemData()
+				.map(new HttpResultFunc<Item>())
+				.subscribeOn(Schedulers.io())
+				.unsubscribeOn(Schedulers.io())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(new Subscriber<Item>() {
+					@Override
+					public void onCompleted() {
 
-	public void setSlideRes(SlideRes mSlideRes) {
-		this.mSlideRes = mSlideRes;
-	}
+					}
 
-	public PlatformRes getPlatformRes() {
-		return mPlatformRes;
-	}
+					@Override
+					public void onError(Throwable e) {
 
-	public void setmPlatformRes(PlatformRes mPlatformRes) {
-		this.mPlatformRes = mPlatformRes;
-	}
+					}
 
-	public SecKillRes getSecKillRes() {
-		return mSecKillRes;
-	}
+					@Override
+					public void onNext(Item item) {
 
-	public void setSecKillRes(SecKillRes mSecKillRes) {
-		this.mSecKillRes = mSecKillRes;
-	}
+					}
+				});
+		homeService.getChoicenessData("1")
+				.map(new HttpResultFunc<ChoicenessData>())
+				.subscribeOn(Schedulers.io())
+				.unsubscribeOn(Schedulers.io())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(new Subscriber<ChoicenessData>() {
+					@Override
+					public void onCompleted() {
 
-	public ProjectRes getProjectRes() {
-		return mProjectRes;
-	}
+					}
 
-	public void setProjectRes(ProjectRes mProjectRes) {
-		this.mProjectRes = mProjectRes;
-	}
+					@Override
+					public void onError(Throwable e) {
 
-	public ItemRes getItemRes() {
-		return mItemRes;
-	}
+					}
 
-	public void setItemRes(ItemRes mItemRes) {
-		this.mItemRes = mItemRes;
-	}
+					@Override
+					public void onNext(ChoicenessData choicenessData) {
 
-	public ChoicenessRes getChoicenessRes() {
-		return mChoicenessRes;
-	}
+					}
+				});
 
-	public void setChoicenessRes(ChoicenessRes mChoicenessRes) {
-		this.mChoicenessRes = mChoicenessRes;
 	}
 
 	public void clear(){
@@ -211,52 +187,102 @@ public class PreHomeDataManager {
 		cancelTheme();
 		cancelItem();
 		cancelChoiceness();
-		mSlideRes = null;
-		mPlatformRes = null;
-		mSecKillRes = null;
-		mProjectRes = null;
-		mItemRes = null;
-		mChoicenessRes = null;
+		mSlideData = null;
+		mPlatformData = null;
+		mSecKillData = null;
+		mItem = null;
+		mProjectData = null;
+		mChoicenessData = null;
+
 	}
 
 	public void cancelChoiceness() {
-		if(null != choicenessData){
-			choicenessData.cancel();
-			choicenessData = null;
-		}
+//		if(null != choicenessData){
+//			choicenessData.cancel();
+//			choicenessData = null;
+//		}
 	}
 
 	public void cancelItem() {
-		if(null != itemData){
-			itemData.cancel();
-			itemData = null;
-		}
+//		if(null != itemData){
+//			itemData.cancel();
+//			itemData = null;
+//		}
 	}
 
 	public void cancelTheme() {
-		if(null != themeData){
-			themeData.cancel();
-			themeData = null;
-		}
+//		if(null != themeData){
+//			themeData.cancel();
+//			themeData = null;
+//		}
 	}
 
 	public void cancelSecKill() {
-		if(null != secKillData){
-			secKillData.cancel();
-			secKillData = null;
-		}
+//		if(null != secKillData){
+//			secKillData.cancel();
+//			secKillData = null;
+//		}
 	}
 
 	public void cancelPlatform() {
-		if(null != platformData){
-			platformData.cancel();
-			platformData = null;
-		}
+//		if(null != platformData){
+//			platformData.cancel();
+//			platformData = null;
+//		}
 	}
 
 	public void cancelSlide() {
-		if(null != slideData){
-			slideData.cancel();
-		}
+//		if(null != slideData){
+//			slideData.cancel();
+//		}
 	}
+
+	public SlideData getSlideData() {
+		return mSlideData;
+	}
+
+	public void setSlideData(SlideData mSlideData) {
+		this.mSlideData = mSlideData;
+	}
+
+	public PlatformData getPlatformData() {
+		return mPlatformData;
+	}
+
+	public void setPlatformData(PlatformData mPlatformData) {
+		this.mPlatformData = mPlatformData;
+	}
+
+	public SecKillData getmSecKillData() {
+		return mSecKillData;
+	}
+
+	public void setSecKillData(SecKillData mSecKillData) {
+		this.mSecKillData = mSecKillData;
+	}
+
+	public ProjectData getProjectData() {
+		return mProjectData;
+	}
+
+	public void setProjectData(ProjectData mProjectData) {
+		this.mProjectData = mProjectData;
+	}
+
+	public Item getItem() {
+		return mItem;
+	}
+
+	public void setItem(Item mItem) {
+		this.mItem = mItem;
+	}
+
+	public ChoicenessData getChoicenessData() {
+		return mChoicenessData;
+	}
+
+	public void setChoicenessData(ChoicenessData mChoicenessData) {
+		this.mChoicenessData = mChoicenessData;
+	}
+
 }
