@@ -16,6 +16,7 @@ public class HeaderInterceptor implements Interceptor{
         Request.Builder requestBuilder = originalRequest.newBuilder()
                 .header("AppType", "Android")
 				.header("Accept", "application/json")
+//                .header("Content-Type", "application/json")
                 .method(originalRequest.method(), originalRequest.body());
         Request request = requestBuilder.build();
         return chain.proceed(request);
