@@ -109,12 +109,12 @@ public class PreHomeDataManager {
 		slideSubscriber = new Subscriber<SlideData>() {
 			@Override
 			public void onCompleted() {
-
+				LogUtils.i("表求完成");
 			}
 
 			@Override
 			public void onError(Throwable e) {
-
+				LogUtils.i(e.getStackTrace().toString());
 			}
 
 			@Override

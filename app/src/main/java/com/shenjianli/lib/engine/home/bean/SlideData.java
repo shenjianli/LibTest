@@ -4,13 +4,13 @@ import java.util.List;
 
 public class SlideData {
 
-	private List<ProductBean> product;
+	private List<Product2> product;
 
-	public List<ProductBean> getProduct() {
+	public List<Product2> getProduct() {
 		return product;
 	}
 
-	public void setProduct(List<ProductBean> product) {
+	public void setProduct(List<Product2> product) {
 		this.product = product;
 	}
 }

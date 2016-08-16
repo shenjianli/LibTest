@@ -2,9 +2,9 @@ package com.shenjianli.shenlib.net;
 
 import com.shenjianli.shenlib.Constants;
 import com.shenjianli.shenlib.LibApp;
+import com.shenjianli.shenlib.cache.CacheInterceptor;
 import com.shenjianli.shenlib.net.cookie.PersistentCookieStore;
 import com.shenjianli.shenlib.net.cookie.WebkitCookieManagerProxy;
-import com.shenjianli.shenlib.cache.CacheInterceptor;
 import com.shenjianli.shenlib.net.interceptor.HeaderInterceptor;
 import com.shenjianli.shenlib.net.interceptor.MockServerInterceptor;
 import com.shenjianli.shenlib.net.interceptor.QueryParameterInterceptor;
@@ -18,6 +18,7 @@ import okhttp3.JavaNetCookieJar;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
@@ -88,6 +89,7 @@ public class NetClient {
                     .baseUrl(Constants.SERVER_BASE_URL)
                     .client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .build();
         }
         return retrofit;

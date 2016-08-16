@@ -20,14 +20,14 @@ import rx.Observable;
 
 public interface HomeService {
 
-	@GET("/mobile/indexSlide.jhtml")
+	@GET("mobile/indexSlide.jhtml")
 	Observable<MallBean<SlideData>> getSlideData();
 	
-	@GET("/mobile/indexPlatformNew.jhtml?flag=1")
+	@GET("mobile/indexPlatformNew.jhtml?flag=1")
 	Observable<MallBean<PlatformData>> getPlatformData();
 	
 	@Headers("Cache-Control: no-store, max-age=0")
-	@GET("/mobile/indexSeckill.jhtml")
+	@GET("mobile/indexSeckill.jhtml")
 	Observable<MallBean<SecKillData>> getSecKillData();
 	
 	@GET("/mobile/indexTheme.jhtml")
