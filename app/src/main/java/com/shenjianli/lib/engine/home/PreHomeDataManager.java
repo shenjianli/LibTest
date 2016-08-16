@@ -25,6 +25,14 @@ public class PreHomeDataManager {
 	private Item mItem;
 	private ChoicenessData mChoicenessData;
 	
+	
+	private Subscriber<ChoicenessData> choicenessSubscriber;
+	private Subscriber<Item> itemSubscriber;
+	private Subscriber<ProjectData> projectSubscriber;
+	private Subscriber<SecKillData> secKillSubscriber;
+	private Subscriber<PlatformData> platformSubscriber;
+	private Subscriber<SlideData> slideSubscriber;
+
 	private PreHomeDataManager() {
 	}
 
@@ -44,36 +52,79 @@ public class PreHomeDataManager {
 	private void getHomeData() {
 		
 		clear();
+		initSubscriber();
 		LogUtils.i( TAG + "开始预加载首页数据");
 		HomeService homeService = NetClient.retrofit().create(HomeService.class);
+
 
 		homeService.getSlideData().map(new HttpResultFunc<SlideData>())
 					.subscribeOn(Schedulers.io())
 					.unsubscribeOn(Schedulers.io())
 					.observeOn(AndroidSchedulers.mainThread())
-					.subscribe(new Subscriber<SlideData>() {
-						@Override
-						public void onCompleted() {
-
-						}
-
-						@Override
-						public void onError(Throwable e) {
-
-						}
-
-						@Override
-						public void onNext(SlideData slideData) {
-
-						}
-					});
+					.subscribe(slideSubscriber);
 
 
 		homeService.getPlatformData().map(new HttpResultFunc<PlatformData>())
-		.subscribeOn(Schedulers.io())
-		.unsubscribeOn(Schedulers.io())
-		.observeOn(AndroidSchedulers.mainThread())
-		.subscribe(new Subscriber<PlatformData>() {
+				.subscribeOn(Schedulers.io())
+				.unsubscribeOn(Schedulers.io())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(platformSubscriber);
+
+
+		homeService.getSecKillData().map(new HttpResultFunc<SecKillData>())
+				.subscribeOn(Schedulers.io())
+				.unsubscribeOn(Schedulers.io())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(secKillSubscriber);
+
+
+		homeService.getThemeData()
+				.map(new HttpResultFunc<ProjectData>())
+				.subscribeOn(Schedulers.io())
+				.unsubscribeOn(Schedulers.io())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(projectSubscriber);
+
+
+		homeService.getItemData()
+				.map(new HttpResultFunc<Item>())
+				.subscribeOn(Schedulers.io())
+				.unsubscribeOn(Schedulers.io())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(itemSubscriber);
+
+
+		homeService.getChoicenessData("1")
+				.map(new HttpResultFunc<ChoicenessData>())
+				.subscribeOn(Schedulers.io())
+				.unsubscribeOn(Schedulers.io())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(choicenessSubscriber);
+
+	}
+
+
+	private void initSubscriber() {
+
+		slideSubscriber = new Subscriber<SlideData>() {
+			@Override
+			public void onCompleted() {
+
+			}
+
+			@Override
+			public void onError(Throwable e) {
+
+			}
+
+			@Override
+			public void onNext(SlideData slideData) {
+				LogUtils.i("获取轮播区数据成功");
+				setSlideData(slideData);
+			}
+		};
+
+		platformSubscriber = new Subscriber<PlatformData>() {
 			@Override
 			public void onCompleted() {
 
@@ -86,99 +137,82 @@ public class PreHomeDataManager {
 
 			@Override
 			public void onNext(PlatformData platformData) {
+				LogUtils.i("获取快速入口数据成功");
+				setPlatformData(platformData);
+			}
+		};
+
+		secKillSubscriber = new Subscriber<SecKillData>() {
+			@Override
+			public void onCompleted() {
 
 			}
-		});
-		homeService.getSecKillData().map(new HttpResultFunc<SecKillData>())
-				.subscribeOn(Schedulers.io())
-				.unsubscribeOn(Schedulers.io())
-				.observeOn(AndroidSchedulers.mainThread())
-				.subscribe(new Subscriber<SecKillData>() {
-					@Override
-					public void onCompleted() {
 
-					}
+			@Override
+			public void onError(Throwable e) {
 
-					@Override
-					public void onError(Throwable e) {
+			}
 
-					}
+			@Override
+			public void onNext(SecKillData secKillData) {
+				LogUtils.i("获取秒杀数据成功");
+				setSecKillData(secKillData);
+			}
+		};
 
-					@Override
-					public void onNext(SecKillData secKillData) {
+		projectSubscriber = new Subscriber<ProjectData>() {
+			@Override
+			public void onCompleted() {
 
-					}
-				});
+			}
 
+			@Override
+			public void onError(Throwable e) {
 
-		homeService.getThemeData()
-				.map(new HttpResultFunc<ProjectData>())
-				.subscribeOn(Schedulers.io())
-				.unsubscribeOn(Schedulers.io())
-				.observeOn(AndroidSchedulers.mainThread())
-				.subscribe(new Subscriber<ProjectData>() {
-					@Override
-					public void onCompleted() {
+			}
 
-					}
+			@Override
+			public void onNext(ProjectData projectData) {
+				LogUtils.i("获取专题数据成功");
+				setProjectData(projectData);
+			}
+		};
 
-					@Override
-					public void onError(Throwable e) {
+		itemSubscriber = new Subscriber<Item>() {
+			@Override
+			public void onCompleted() {
 
-					}
+			}
 
-					@Override
-					public void onNext(ProjectData projectData) {
+			@Override
+			public void onError(Throwable e) {
 
-					}
-			});
+			}
 
+			@Override
+			public void onNext(Item item) {
+				LogUtils.i("获取精品推荐数据成功");
+				setItem(item);
+			}
+		};
+		choicenessSubscriber = new Subscriber<ChoicenessData>() {
+			@Override
+			public void onCompleted() {
 
-		homeService.getItemData()
-				.map(new HttpResultFunc<Item>())
-				.subscribeOn(Schedulers.io())
-				.unsubscribeOn(Schedulers.io())
-				.observeOn(AndroidSchedulers.mainThread())
-				.subscribe(new Subscriber<Item>() {
-					@Override
-					public void onCompleted() {
+			}
 
-					}
+			@Override
+			public void onError(Throwable e) {
 
-					@Override
-					public void onError(Throwable e) {
+			}
 
-					}
-
-					@Override
-					public void onNext(Item item) {
-
-					}
-				});
-		homeService.getChoicenessData("1")
-				.map(new HttpResultFunc<ChoicenessData>())
-				.subscribeOn(Schedulers.io())
-				.unsubscribeOn(Schedulers.io())
-				.observeOn(AndroidSchedulers.mainThread())
-				.subscribe(new Subscriber<ChoicenessData>() {
-					@Override
-					public void onCompleted() {
-
-					}
-
-					@Override
-					public void onError(Throwable e) {
-
-					}
-
-					@Override
-					public void onNext(ChoicenessData choicenessData) {
-
-					}
-				});
-
+			@Override
+			public void onNext(ChoicenessData choicenessData) {
+				LogUtils.i("获取热卖商品数据成功");
+				setChoicenessData(choicenessData);
+			}
+		};
 	}
-
 	public void clear(){
 		LogUtils.i( TAG + " 预加载  取消请求   清空数据");
 		cancelSlide();
@@ -197,44 +231,45 @@ public class PreHomeDataManager {
 	}
 
 	public void cancelChoiceness() {
-//		if(null != choicenessData){
-//			choicenessData.cancel();
-//			choicenessData = null;
-//		}
+		if(null != choicenessSubscriber){
+			choicenessSubscriber.unsubscribe();
+			choicenessSubscriber = null;
+		}
 	}
 
 	public void cancelItem() {
-//		if(null != itemData){
-//			itemData.cancel();
-//			itemData = null;
-//		}
+		if(null != itemSubscriber){
+			itemSubscriber.unsubscribe();
+			itemSubscriber = null;
+		}
 	}
 
 	public void cancelTheme() {
-//		if(null != themeData){
-//			themeData.cancel();
-//			themeData = null;
-//		}
+		if(null != projectSubscriber){
+			projectSubscriber.unsubscribe();
+			projectSubscriber = null;
+		}
 	}
 
 	public void cancelSecKill() {
-//		if(null != secKillData){
-//			secKillData.cancel();
-//			secKillData = null;
-//		}
+		if(null != secKillSubscriber){
+			secKillSubscriber.unsubscribe();
+			secKillSubscriber = null;
+		}
 	}
 
 	public void cancelPlatform() {
-//		if(null != platformData){
-//			platformData.cancel();
-//			platformData = null;
-//		}
+		if(null != platformSubscriber){
+			platformSubscriber.unsubscribe();
+			platformSubscriber = null;
+		}
 	}
 
 	public void cancelSlide() {
-//		if(null != slideData){
-//			slideData.cancel();
-//		}
+		if(null != slideSubscriber){
+			slideSubscriber.unsubscribe();
+			slideSubscriber = null;
+		}
 	}
 
 	public SlideData getSlideData() {

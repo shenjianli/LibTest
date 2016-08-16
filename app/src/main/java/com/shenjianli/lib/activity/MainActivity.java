@@ -16,6 +16,7 @@ import com.shenjianli.lib.adapter.RecylerViewAdapter;
 import com.shenjianli.lib.api.ApiStores;
 import com.shenjianli.lib.bean.WeatherJson;
 import com.shenjianli.lib.data.DemoData;
+import com.shenjianli.lib.engine.home.PreHomeDataManager;
 import com.shenjianli.lib.engine.recyclerview.refresh.RefreshMainActivity;
 import com.shenjianli.lib.service.BackgroundMonitorService;
 import com.shenjianli.shenlib.base.BaseActivity;
@@ -92,7 +93,11 @@ public class MainActivity extends BaseActivity implements NetBroadcastReceiver.N
                 }
             }
         });
+
         initRecylerView();
+
+        PreHomeDataManager.getPreHomeDataManager().startPreLoadDataOfHome();
+
     }
 
     private void initData() {
