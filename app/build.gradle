@@ -6,6 +6,12 @@ android {
     buildToolsVersion "23.0.3"
 
     signingConfigs {
+        config{
+            storeFile file('../icbc_release_key')
+            storePassword 'Password123!'
+            keyAlias 'icbc_release_key'
+            keyPassword 'Password123!'
+        }
     }
 
 
@@ -19,6 +25,12 @@ android {
         multiDexEnabled true
     }
     buildTypes {
+        release {
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+            minifyEnabled false
+            zipAlignEnabled true
+        }
     }
 
 //    compileOptions {
@@ -27,7 +39,22 @@ android {
 //    }
 
     productFlavors {
+        Beta{
+            applicationId "com.shenjianli.lib.beta"
+            manifestPlaceholders = [app_name:"测试版" ,icon: "@mipmap/ic_launcher"]
+            //在java代码中具体的使用方式为：context.getResources().getString(R.string.strKey);
+            resValue("string" , "strKey","beta版本")
+            resValue ('string','isDebug','true')
+            buildConfigField "boolean", "AUTO_UPDATES", "false"
 
+        }
+        Releases{
+            applicationId "com.shenjianli.lib.release"
+            manifestPlaceholders = [app_name:"正式版",icon: "@mipmap/ic_launcher_releases"]
+            resValue("string" , "strKey","release版本")
+            resValue ('string','isDebug','false')
+            buildConfigField "boolean", "AUTO_UPDATES", "false"
+        }
     }
 }
 
