@@ -16,8 +16,6 @@
         android:allowBackup="true"
         android:icon="${icon}"
         android:label="${app_name}"
-        android:debuggable="true"
-        android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="HardcodedDebugMode">
         <activity android:name=".activity.MainActivity">

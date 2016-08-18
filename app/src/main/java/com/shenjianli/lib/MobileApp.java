@@ -26,6 +26,7 @@ public class MobileApp extends MultiDexApplication{
         LibApp.getLibInstance().setMobileContext(this);
         if(FileUtils.getProperties(this,R.raw.mobile)){
             String mode = FileUtils.getPropertyValueByKey("mode");
+            LogUtils.i("开发模式为：" + mode);
             if(Constants.DEV_MODE.equals(mode)){
                 LibApp.getLibInstance().setLogEnable(true);
                 LibApp.getLibInstance().setUrlConfigManager(R.xml.url);
