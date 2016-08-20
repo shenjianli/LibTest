@@ -75,7 +75,10 @@ android {
         }
     }
 
-
+    //添加如下代码
+//    productFlavors.all { flavors->
+//        flavors.manifestPlaceholders=[CHANNEL_VALUE:name]
+//    }
     //修改生成的apk名字
     applicationVariants.all{
         variant->
@@ -101,6 +104,8 @@ android {
             }
         }
     }
+
+
 }
 
 dependencies {
