@@ -25,6 +25,7 @@ import com.shenjianli.shenlib.net.NetClient;
 import com.shenjianli.shenlib.net.RetrofitCallback;
 import com.shenjianli.shenlib.receiver.NetBroadcastReceiver;
 import com.shenjianli.shenlib.util.CustomToast;
+import com.shenjianli.shenlib.util.LogUtils;
 import com.shenjianli.shenlib.widget.CylinderImageView;
 
 import java.util.ArrayList;
@@ -222,7 +223,7 @@ item布局
             @Override
             public void onResponse(Call<WeatherJson> arg0,
                                    Response<WeatherJson> arg1) {
-                Log.i("wxl", "getWeatherinfo=" + arg1.body().getWeatherinfo().getCity());
+                LogUtils.i("getWeatherinfo=" + arg1.body().getWeatherinfo().getCity());
                 text.setText(arg1.body().getWeatherinfo().getCity());
             }
 
