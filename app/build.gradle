@@ -7,11 +7,7 @@ def getDate() {
     def formattedDate = date.format('yyyy_MMdd_HHmm')
     return formattedDate
 }
-//从androidManifest.xml中获取版本号
-def getVersionNameFromManifest(){
-    def manifestParser = new com.android.builder.core.DefaultManifestParser()
-    return manifestParser.getVersionName(android.sourceSets.main.manifest.srcFile)
-}
+
 
 android {
     compileSdkVersion 23
@@ -88,12 +84,12 @@ android {
             def newName = '';
             if(variant.buildType.name.equals('release')){
 //                println(variant.productFlavors[0].name)
-                def releaseApkName = 'product_' + getVersionNameFromManifest() +
+                def releaseApkName = 'product_' + defaultConfig.versionName +
                         '_' + variant.productFlavors[0].name + getDate() +'.apk'
                 output.outputFile = new File(oldFile.parent, releaseApkName)
             }
             if(variant.buildType.name.equals('Beta')){
-                newName = oldFile.name.replace(".apk", "-v" + getVersionNameFromManifest()
+                newName = oldFile.name.replace(".apk", "-v" + defaultConfig.versionName
                         + "-build" + getDate() + ".apk")
                 output.outputFile = new File(oldFile.parent, newName)
             }
