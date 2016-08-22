@@ -8,6 +8,9 @@ def getDate() {
     return formattedDate
 }
 
+def releaseTime() {
+    return new Date().format("yyyy_MM_dd", TimeZone.getTimeZone("UTC"))
+}
 
 android {
     compileSdkVersion 23
@@ -55,7 +58,7 @@ android {
     productFlavors {
         Beta{
             applicationId "com.shenjianli.lib.beta"
-            manifestPlaceholders = [app_name:"测试版" ,icon: "@mipmap/ic_launcher"]
+            manifestPlaceholders = [app_name:"测试版" ,icon: "@mipmap/ic_launcher",CHANNEL_VALUE:"Beta"]
             //在java代码中具体的使用方式为：context.getResources().getString(R.string.strKey);
             resValue("string" , "strKey","beta版本")
             resValue ('string','isDebug','true')
@@ -64,7 +67,7 @@ android {
         }
         Releases{
             applicationId "com.shenjianli.lib.release"
-            manifestPlaceholders = [app_name:"正式版",icon: "@mipmap/ic_launcher_releases"]
+            manifestPlaceholders = [app_name:"正式版" ,icon: "@mipmap/ic_launcher_releases",CHANNEL_VALUE:"Releases"]
             resValue("string" , "strKey","release版本")
             resValue ('string','isDebug','false')
             buildConfigField "boolean", "AUTO_UPDATES", "false"
@@ -101,6 +104,10 @@ android {
         }
     }
 
+    //移除lint检测的error
+    lintOptions {
+        abortOnError false
+    }
 
 }
 
@@ -118,6 +125,6 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.jcodecraeer:xrecyclerview:1.2.7'
     compile 'com.android.support:multidex:1.0.0'
-
+    compile 'com.facebook.fresco:fresco:0.12.0'
 
 }
