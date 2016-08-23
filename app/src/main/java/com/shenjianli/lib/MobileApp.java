@@ -12,7 +12,7 @@ import com.shenjianli.shenlib.util.LogUtils;
 
 
 /**
- * Created by edianzu on 2016/7/14.
+ * Created by shenjianli on 2016/7/14.
  */
 public class MobileApp extends MultiDexApplication{
 

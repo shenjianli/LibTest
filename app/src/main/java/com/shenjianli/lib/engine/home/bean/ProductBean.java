@@ -1,7 +1,7 @@
 package com.shenjianli.lib.engine.home.bean;
 
 /**
- * Created by edianzu on 2016/8/12.
+ * Created by shenjianli on 2016/8/12.
  */
 public class ProductBean {
     private String action;

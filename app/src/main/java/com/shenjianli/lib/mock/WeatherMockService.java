@@ -7,7 +7,7 @@ import com.shenjianli.shenlib.net.mock.MockService;
 import com.shenjianli.shenlib.util.LogUtils;
 
 /**
- * Created by edianzu on 2016/7/8.
+ * Created by shenjianli on 2016/7/8.
  */
 public class WeatherMockService extends MockService{
     @Override
