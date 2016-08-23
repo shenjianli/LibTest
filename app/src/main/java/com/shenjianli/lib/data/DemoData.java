@@ -1,7 +1,7 @@
 package com.shenjianli.lib.data;
 
 /**
- * Created by edianzu on 2016/7/25.
+ * Created by shenjianli on 2016/7/25.
  */
 public class DemoData {
     private String name;

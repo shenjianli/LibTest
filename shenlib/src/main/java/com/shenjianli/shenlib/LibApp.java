@@ -2,14 +2,13 @@ package com.shenjianli.shenlib;
 
 import android.app.Application;
 import android.content.Context;
-import android.text.TextUtils;
 
 import com.shenjianli.shenlib.net.mock.UrlConfigManager;
 import com.shenjianli.shenlib.util.BeanFactory;
 import com.shenjianli.shenlib.util.LogUtils;
 
 /**
- * Created by edianzu on 2016/7/7.
+ * Created by shenjianli on 2016/7/7.
  */
 public class LibApp extends Application{
 

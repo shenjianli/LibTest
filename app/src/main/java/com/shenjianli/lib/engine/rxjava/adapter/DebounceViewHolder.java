@@ -12,7 +12,7 @@ import com.shenjianli.shenlib.base.BaseHolder;
 import butterknife.Bind;
 
 /**
- * Created by edianzu on 2016/8/1.
+ * Created by shenjianli on 2016/8/1.
  */
 public class DebounceViewHolder extends BaseHolder{
 

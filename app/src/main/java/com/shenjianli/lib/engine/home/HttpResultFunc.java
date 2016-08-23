@@ -6,7 +6,7 @@ import com.shenjianli.lib.engine.rxandroid.ApiException;
 import rx.functions.Func1;
 
 /**
- * Created by edianzu on 2016/8/15.
+ * Created by shenjianli on 2016/8/15.
  */
 public class HttpResultFunc<T> implements Func1<MallBean<T>,T>{
 
