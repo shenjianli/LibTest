@@ -19,6 +19,35 @@ public class WeatherInfo implements Serializable{
     private String Radar;
     private String njd;
     private String qy;
+
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+
+    public boolean isSuccess() {
+        return isSuccess;
+    }
+
+    public void setSuccess(boolean success) {
+        isSuccess = success;
+    }
+
+    private String errorCode;
+    private String errorMsg;
+    private boolean isSuccess;
+
     //这里省略get和set方法
     public String getCity() {
         return city;
