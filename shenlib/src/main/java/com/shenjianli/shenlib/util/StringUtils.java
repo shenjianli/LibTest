@@ -1,7 +1,7 @@
 package com.shenjianli.shenlib.util;
 
 /**
- * Created by edianzu on 2016/7/8.
+ * Created by shenjianli on 2016/7/8.
  */
 public class StringUtils {
 

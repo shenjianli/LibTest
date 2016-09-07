@@ -5,6 +5,9 @@ import com.shenjianli.shenlib.util.LogUtils;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * 产生数据实体的Bean工厂
+ */
 public class BeanFactory {
 
 	private static BeanFactory mBeanFactory;

@@ -11,7 +11,7 @@ import com.shenjianli.shenlib.base.BaseAdapter;
 import java.util.List;
 
 /**
- * Created by edianzu on 2016/7/25.
+ * Created by shenjianli on 2016/7/25.
  */
 public class RecylerViewAdapter extends BaseAdapter<DemoData,DemoViewHolder> {
 

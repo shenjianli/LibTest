@@ -207,7 +207,12 @@ item布局
 
     @OnClick(R.id.button)
     public void onClick() {
-        getWeather();
+        gotoLoginActivity();
+    }
+
+    private void gotoLoginActivity(){
+        Intent intent = new Intent(this,LoginActivity.class);
+        startActivity(intent);
     }
 
     private void getWeather() {

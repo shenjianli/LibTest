@@ -11,7 +11,7 @@ import com.shenjianli.shenlib.base.BaseAdapter;
 import java.util.List;
 
 /**
- * Created by edianzu on 2016/8/3.
+ * Created by shenjianli on 2016/8/3.
  */
 public class StaggeredAdapter extends BaseAdapter<Item,StaggeredHolder>{
 

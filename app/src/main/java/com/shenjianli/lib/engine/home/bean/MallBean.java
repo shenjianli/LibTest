@@ -3,7 +3,7 @@ package com.shenjianli.lib.engine.home.bean;
 import java.util.List;
 
 /**
- * Created by edianzu on 2016/8/12.
+ * Created by shenjianli on 2016/8/12.
  */
 public class MallBean<T> {
 

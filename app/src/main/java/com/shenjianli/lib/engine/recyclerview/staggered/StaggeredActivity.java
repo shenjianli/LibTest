@@ -25,7 +25,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by edianzu on 2016/8/3.
+ * Created by shenjianli on 2016/8/3.
  */
 public class StaggeredActivity extends BaseActivity {
 
