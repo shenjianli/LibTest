@@ -6,7 +6,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import com.shenjianli.lib.release.R;
+
+import com.shenjianli.lib.R;
+
 
 public class ScrollingActivity extends AppCompatActivity {
 
