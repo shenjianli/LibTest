@@ -44,9 +44,9 @@ android {
         }
         debug {
             //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+            //signingConfig signingConfigs.config
             minifyEnabled false
-            zipAlignEnabled true
+            zipAlignEnabled false
         }
     }
 
@@ -56,6 +56,14 @@ android {
 //    }
 
     productFlavors {
+        Dev{
+            applicationId "com.shenjianli.lib"
+            manifestPlaceholders = [app_name:"开发版" ,icon: "@mipmap/ic_launcher",CHANNEL_VALUE:"Dev"]
+            //在java代码中具体的使用方式为：context.getResources().getString(R.string.strKey);
+            resValue("string" , "strKey","dev版本")
+            resValue ('string','isDebug','true')
+            buildConfigField "boolean", "AUTO_UPDATES", "false"
+        }
         Beta{
             applicationId "com.shenjianli.lib.beta"
             manifestPlaceholders = [app_name:"测试版" ,icon: "@mipmap/ic_launcher",CHANNEL_VALUE:"Beta"]
@@ -96,7 +104,7 @@ android {
                         + "-build" + getDate() + ".apk")
                 output.outputFile = new File(oldFile.parent, newName)
             }
-            if(variant.buildType.name.equals('debug')){
+            if(variant.buildType.name.equals('Dev')){
                 output.outputFile = new File(output.outputFile.parent, "ShenLibTest_"
                         + defaultConfig.versionCode + "_v" + defaultConfig.versionName +
                         "_"+buildType.name+"_"+ getDate() +".apk");
