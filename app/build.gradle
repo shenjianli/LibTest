@@ -8,6 +8,9 @@ def getDate() {
     return formattedDate
 }
 
+def releaseTime() {
+    return new Date().format("yyyy_MM_dd", TimeZone.getTimeZone("UTC"))
+}
 
 android {
     compileSdkVersion 23
@@ -41,9 +44,9 @@ android {
         }
         debug {
             //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+            //signingConfig signingConfigs.config
             minifyEnabled false
-            zipAlignEnabled true
+            zipAlignEnabled false
         }
     }
 
@@ -53,9 +56,17 @@ android {
 //    }
 
     productFlavors {
+        Dev{
+            applicationId "com.shenjianli.lib"
+            manifestPlaceholders = [app_name:"开发版" ,icon: "@mipmap/ic_launcher",CHANNEL_VALUE:"Dev"]
+            //在java代码中具体的使用方式为：context.getResources().getString(R.string.strKey);
+            resValue("string" , "strKey","dev版本")
+            resValue ('string','isDebug','true')
+            buildConfigField "boolean", "AUTO_UPDATES", "false"
+        }
         Beta{
             applicationId "com.shenjianli.lib.beta"
-            manifestPlaceholders = [app_name:"测试版" ,icon: "@mipmap/ic_launcher"]
+            manifestPlaceholders = [app_name:"测试版" ,icon: "@mipmap/ic_launcher",CHANNEL_VALUE:"Beta"]
             //在java代码中具体的使用方式为：context.getResources().getString(R.string.strKey);
             resValue("string" , "strKey","beta版本")
             resValue ('string','isDebug','true')
@@ -64,7 +75,7 @@ android {
         }
         Releases{
             applicationId "com.shenjianli.lib.release"
-            manifestPlaceholders = [app_name:"正式版",icon: "@mipmap/ic_launcher_releases"]
+            manifestPlaceholders = [app_name:"正式版" ,icon: "@mipmap/ic_launcher_releases",CHANNEL_VALUE:"Releases"]
             resValue("string" , "strKey","release版本")
             resValue ('string','isDebug','false')
             buildConfigField "boolean", "AUTO_UPDATES", "false"
@@ -93,7 +104,7 @@ android {
                         + "-build" + getDate() + ".apk")
                 output.outputFile = new File(oldFile.parent, newName)
             }
-            if(variant.buildType.name.equals('debug')){
+            if(variant.buildType.name.equals('Dev')){
                 output.outputFile = new File(output.outputFile.parent, "ShenLibTest_"
                         + defaultConfig.versionCode + "_v" + defaultConfig.versionName +
                         "_"+buildType.name+"_"+ getDate() +".apk");
@@ -101,6 +112,10 @@ android {
         }
     }
 
+    //移除lint检测的error
+    lintOptions {
+        abortOnError false
+    }
 
 }
 
@@ -118,6 +133,6 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.jcodecraeer:xrecyclerview:1.2.7'
     compile 'com.android.support:multidex:1.0.0'
-
+    compile 'com.facebook.fresco:fresco:0.12.0'
 
 }

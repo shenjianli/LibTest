@@ -32,7 +32,6 @@ public class GridActivity extends AppCompatActivity {
         mRecyclerView = (XRecyclerView)this.findViewById(R.id.recyclerview);
         GridLayoutManager layoutManager = new GridLayoutManager(this,3);
         mRecyclerView.setLayoutManager(layoutManager);
-
         mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallGridPulse);
         mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallClipRotatePulse);
         mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
@@ -52,7 +51,6 @@ public class GridActivity extends AppCompatActivity {
                         mAdapter.notifyDataSetChanged();
                         mRecyclerView.refreshComplete();
                     }
-
                 }, 1000);            //refresh data here
             }
 

@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.shenjianli.lib"
-    >
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.shenjianli.lib">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.GET_TASKS"/>
-
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-    <uses-permission android:name="android.permission.READ_PROFILE"/>
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
         android:name=".MobileApp"
@@ -21,8 +15,7 @@
         android:icon="${icon}"
         android:label="${app_name}"
         android:theme="@style/AppTheme"
-        tools:ignore="HardcodedDebugMode"
-        >
+        tools:ignore="HardcodedDebugMode">
 
         <!--
         <meta-data
@@ -32,40 +25,42 @@
 
         <activity android:name=".activity.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.RecyclerViewActivity"/>
-        <activity android:name=".engine.recyclerview.chat.ChatActivity"/>
-        <activity android:name=".engine.recyclerview.multi.MultiActivity"/>
-        <activity android:name=".engine.recyclerview.single.SingleActivity"/>
-        <activity android:name=".activity.RecyclerViewMainActivity"/>
-        <activity android:name=".activity.RxAndroidActivity"/>
-        <activity android:name=".activity.RxJavaActivity"/>
-        <activity android:name=".engine.recyclerview.staggered.StaggeredActivity"/>
-        <activity android:name=".engine.recyclerview.refresh.DisableExampleActivity"/>
-        <activity android:name=".engine.recyclerview.refresh.EmptyViewActivity"/>
-        <activity android:name=".engine.recyclerview.refresh.GridActivity"/>
-        <activity android:name=".engine.recyclerview.refresh.LinearActivity"/>
-        <activity android:name=".engine.recyclerview.refresh.StaggeredGridActivity"/>
-        <activity android:name=".engine.recyclerview.refresh.CollapsingToolbarLayoutActivity"/>
-        <activity android:name=".engine.recyclerview.refresh.MultiHeaderActivity"/>
-        <activity android:name=".engine.recyclerview.refresh.RefreshMainActivity"/>
+        <activity android:name=".activity.RecyclerViewActivity" />
+        <activity android:name=".engine.recyclerview.chat.ChatActivity" />
+        <activity android:name=".engine.recyclerview.multi.MultiActivity" />
+        <activity android:name=".engine.recyclerview.single.SingleActivity" />
+        <activity android:name=".activity.RecyclerViewMainActivity" />
+        <activity android:name=".activity.RxAndroidActivity" />
+        <activity android:name=".activity.RxJavaActivity" />
+        <activity android:name=".engine.recyclerview.staggered.StaggeredActivity" />
+        <activity android:name=".engine.recyclerview.refresh.DisableExampleActivity" />
+        <activity android:name=".engine.recyclerview.refresh.EmptyViewActivity" />
+        <activity android:name=".engine.recyclerview.refresh.GridActivity" />
+        <activity android:name=".engine.recyclerview.refresh.LinearActivity" />
+        <activity android:name=".engine.recyclerview.refresh.StaggeredGridActivity" />
+        <activity android:name=".engine.recyclerview.refresh.CollapsingToolbarLayoutActivity" />
+        <activity android:name=".engine.recyclerview.refresh.MultiHeaderActivity" />
+        <activity android:name=".engine.recyclerview.refresh.RefreshMainActivity" />
 
-        <service android:name=".service.BackgroundMonitorService"/>
+        <service android:name=".service.BackgroundMonitorService" />
 
         <activity
-            android:name=".activity.LoginActivity"
-            android:label="@string/title_activity_login"
-            android:parentActivityName="com.shenjianli.shenlib.base.BaseActivity"
-            >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.shenjianli.shenlib.base.BaseActivity"
-                />
-        </activity>
+            android:name=".activity.AddActivity"
+            android:label="@string/title_activity_add"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.DrawerActivity"
+            android:label="@string/title_activity_drawer"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

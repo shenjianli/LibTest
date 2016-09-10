@@ -212,6 +212,9 @@ item布局
 
     private void gotoLoginActivity(){
         Intent intent = new Intent(this,LoginActivity.class);
+        intent = new Intent(this,AddActivity.class);
+        intent = new Intent(this,DrawerActivity.class);
+        //intent = new Intent(this,ScrollingActivity.class);
         startActivity(intent);
     }
 
