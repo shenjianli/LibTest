@@ -32,7 +32,7 @@ bintray {
 
     configurations = ['archives']
     pkg {
-        repo = bintrayRepo
+        repo = "shenlib"
         name = bintrayName
         desc = libraryDescription
         websiteUrl = siteUrl
