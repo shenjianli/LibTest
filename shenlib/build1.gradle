@@ -1,28 +1,5 @@
 apply plugin: 'com.android.library'
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'shenlib'
-
-    publishedGroupId = 'com.github.shenjianli.shenlib'
-    libraryName = 'shenlib'
-    artifact = 'shenlib'
-
-    libraryDescription = 'A wrapper for Facebook Native Like Button (LikeView) on Android'
-
-    siteUrl = 'https://github.com/shenjianli/LibTest'
-    gitUrl = 'https://github.com/shenjianli/LibTest.git'
-
-    libraryVersion = '1.0.0'
-
-    developerId = 'shenjianli'
-    developerName = 'shenjianli'
-    developerEmail = 'cqtddt@163.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-}
 
 android {
     compileSdkVersion 23
@@ -57,5 +34,3 @@ dependencies {
     compile files('libs/retrofit-2.0.2.jar')
     compile files('libs/adapter-rxjava-2.0.2.jar')
 }
-apply from: './install.gradle'
-apply from: './bintray.gradle'
