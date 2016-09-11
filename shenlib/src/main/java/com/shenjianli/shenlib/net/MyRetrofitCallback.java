@@ -8,16 +8,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public abstract class MyRetrofitCallback<T> implements Callback<BaseCallModel<T>> {
+public abstract class MyRetrofitCallback<T> implements Callback<HttpResult<T>> {
 
 	@Override
-	public void onFailure(Call<BaseCallModel<T>> arg0, Throwable arg1) {
+	public void onFailure(Call<HttpResult<T>> arg0, Throwable arg1) {
 		onFail(arg1.getMessage());
 	}
 
 	@Override
-	public void onResponse(Call<BaseCallModel<T>> arg0, Response<BaseCallModel<T>> response) {
-		BaseCallModel<T> model = response.body();
+	public void onResponse(Call<HttpResult<T>> arg0, Response<HttpResult<T>> response) {
+		HttpResult<T> model = response.body();
 		if(null == model){
 			// 404 or the response cannot be converted to User.
 			ResponseBody responseBody = response.errorBody();
@@ -32,11 +32,11 @@ public abstract class MyRetrofitCallback<T> implements Callback<BaseCallModel<T>
 			}
 		}
 		else {//200
-			if(model.errno == 0){
-				onFail(model.errMsg);
+			if(!model.isSuccess()){
+				onFail(model.getErrMsg());
 			}
 			else {
-				onSuccess(model.data);
+				onSuccess(model.getData());
 			}
 
 		}
