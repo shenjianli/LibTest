@@ -1,5 +1,7 @@
 package com.shenjianli.shenlib.net;
 
+import android.text.TextUtils;
+
 import com.shenjianli.shenlib.Constants;
 import com.shenjianli.shenlib.LibApp;
 import com.shenjianli.shenlib.cache.CacheInterceptor;
@@ -84,15 +86,17 @@ public class NetClient {
 
             //以上设置结束，才能build(),不然设置白搭
             OkHttpClient okHttpClient = builder.build();
-            
+            String url = LibApp.getLibInstance().getServerBaseUrl();
+            if(TextUtils.isEmpty(url)){
+                url = Constants.SERVER_BASE_URL;
+            }
             retrofit = new Retrofit.Builder()
-                    .baseUrl(Constants.SERVER_BASE_URL)
+                    .baseUrl(url)
                     .client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .build();
         }
         return retrofit;
-
     }
 }

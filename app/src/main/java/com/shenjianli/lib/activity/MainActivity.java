@@ -19,6 +19,7 @@ import com.shenjianli.lib.data.DemoData;
 import com.shenjianli.lib.engine.home.PreHomeDataManager;
 import com.shenjianli.lib.engine.recyclerview.refresh.RefreshMainActivity;
 import com.shenjianli.lib.service.BackgroundMonitorService;
+import com.shenjianli.lib.test.TestActivity;
 import com.shenjianli.shenlib.base.BaseActivity;
 import com.shenjianli.shenlib.base.DividerDecoration;
 import com.shenjianli.shenlib.net.NetClient;
@@ -89,6 +90,10 @@ public class MainActivity extends BaseActivity implements NetBroadcastReceiver.N
                         intent = new Intent(MainActivity.this, RefreshMainActivity.class);
                         startActivity(intent);
                         break;
+                    case 4:
+                        intent = new Intent(MainActivity.this, TestActivity.class);
+                        startActivity(intent);
+                        break;
                     default:
                         break;
                 }
@@ -122,6 +127,11 @@ public class MainActivity extends BaseActivity implements NetBroadcastReceiver.N
         demodata = new DemoData();
         demodata.setImgId(R.drawable.ic_launcher);
         demodata.setName("PullRefresh");
+        mDemoDatas.add(demodata);
+
+        demodata = new DemoData();
+        demodata.setImgId(R.drawable.ic_launcher);
+        demodata.setName("Test");
         mDemoDatas.add(demodata);
 
         for (int i = 0; i < 5; i++) {

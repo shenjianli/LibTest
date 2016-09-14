@@ -63,14 +63,19 @@ android {
             resValue("string" , "strKey","dev版本")
             resValue ('string','isDebug','true')
             buildConfigField "boolean", "AUTO_UPDATES", "false"
+            buildConfigField("String","MODE","\"dev\"")
+            buildConfigField("String","SERVER_URL","\"http://m.dev.shen.com.cn/\"")
         }
-        Beta{
-            applicationId "com.shenjianli.lib.beta"
-            manifestPlaceholders = [app_name:"测试版" ,icon: "@mipmap/ic_launcher",CHANNEL_VALUE:"Beta"]
+        DevTest{
+            applicationId "com.shenjianli.lib.test"
+            manifestPlaceholders = [app_name:"自测版" ,icon: "@mipmap/ic_launcher",CHANNEL_VALUE:"Test"]
             //在java代码中具体的使用方式为：context.getResources().getString(R.string.strKey);
             resValue("string" , "strKey","beta版本")
             resValue ('string','isDebug','true')
             buildConfigField "boolean", "AUTO_UPDATES", "false"
+            buildConfigField("String","MODE","\"test\"")
+            //测试版本主要使用本地MockService来返回数据，可以不设置
+            buildConfigField("String","SERVER_URL","\"test\"")
 
         }
         Releases{
@@ -79,6 +84,8 @@ android {
             resValue("string" , "strKey","release版本")
             resValue ('string','isDebug','false')
             buildConfigField "boolean", "AUTO_UPDATES", "false"
+            buildConfigField("String","MODE","\"release\"")
+            buildConfigField("String","SERVER_URL","\"http://m.mall.shen.com.cn/\"")
         }
     }
 

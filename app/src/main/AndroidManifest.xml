@@ -46,7 +46,7 @@
         <activity android:name=".engine.recyclerview.refresh.CollapsingToolbarLayoutActivity" />
         <activity android:name=".engine.recyclerview.refresh.MultiHeaderActivity" />
         <activity android:name=".engine.recyclerview.refresh.RefreshMainActivity" />
-
+        <activity android:name=".test.TestActivity"/>
         <service android:name=".service.BackgroundMonitorService" />
 
         <activity

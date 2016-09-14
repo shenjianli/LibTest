@@ -26,6 +26,7 @@ public class LibApp extends Application{
 
     private boolean isConnect;
 
+    private String serverBaseUrl = "";
 
     public Context getMobileContext() {
         return mMobileContext;
@@ -75,4 +76,11 @@ public class LibApp extends Application{
         }
     }
 
+    public void setServerBaseUrl(String url) {
+        this.serverBaseUrl = url;
+    }
+
+    public String getServerBaseUrl() {
+        return serverBaseUrl;
+    }
 }
