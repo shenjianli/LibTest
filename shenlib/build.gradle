@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/shenjianli/LibTest'
     gitUrl = 'https://github.com/shenjianli/LibTest.git'
 
-    libraryVersion = '1.0.0'
+    libraryVersion = '1.0.1'
 
     developerId = 'shenjianli'
     developerName = 'shenjianli'

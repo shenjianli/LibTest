@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <url>
+    <!-- Key表示请求地址 -->
+    <!-- Expires若需要缓存，可以设置缓存时间 -->
+    <!-- MockClass请求地址对应的MockService类地址  -->
     <Node
         Key="/shenjianli/test"
         Expires="300"
-        NetType="get"
         MockClass="com.shenjianli.lib.test.TestMockService"/>
 </url>

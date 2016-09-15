@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.shenjianli.lib.R;
 import com.shenjianli.shenlib.net.NetClient;
 import com.shenjianli.shenlib.net.RetrofitCallback;
+import com.shenjianli.shenlib.util.LogUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,11 +31,15 @@ public class TestActivity extends AppCompatActivity {
 
     @OnClick(R.id.get_btn)
     public void onClick() {
+        //创建网络请求结口
         TestApi api = NetClient.retrofit().create(TestApi.class);
+        //根据网络请求结口获取数据
         Call<Test> data = api.getTestData("001");
+        //启动网络请求去请求数据
         data.enqueue(new RetrofitCallback<Test>() {
             @Override
             public void onSuccess(Test data) {
+                //成功时返回测试数据
                 if(null != data){
                     mCityTv.setText(data.getTestData().getCity());
                 }
@@ -42,7 +47,8 @@ public class TestActivity extends AppCompatActivity {
 
             @Override
             public void onFail(String errorMsg) {
-
+                //失败时返回错误信息
+                LogUtils.i(" 错误信息 " + errorMsg);
             }
         });
     }
