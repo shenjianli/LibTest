@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
-        android:name=".MobileApp"
+        android:name=".app.MobileApp"
         android:allowBackup="true"
         android:icon="${icon}"
         android:label="${app_name}"
@@ -23,42 +23,42 @@
             android:value="${CHANNEL_VALUE}"/>
         -->
 
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".app.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.RecyclerViewActivity" />
-        <activity android:name=".engine.recyclerview.chat.ChatActivity" />
-        <activity android:name=".engine.recyclerview.multi.MultiActivity" />
-        <activity android:name=".engine.recyclerview.single.SingleActivity" />
-        <activity android:name=".activity.RecyclerViewMainActivity" />
-        <activity android:name=".activity.RxAndroidActivity" />
-        <activity android:name=".activity.RxJavaActivity" />
-        <activity android:name=".engine.recyclerview.staggered.StaggeredActivity" />
-        <activity android:name=".engine.recyclerview.refresh.DisableExampleActivity" />
-        <activity android:name=".engine.recyclerview.refresh.EmptyViewActivity" />
-        <activity android:name=".engine.recyclerview.refresh.GridActivity" />
-        <activity android:name=".engine.recyclerview.refresh.LinearActivity" />
-        <activity android:name=".engine.recyclerview.refresh.StaggeredGridActivity" />
-        <activity android:name=".engine.recyclerview.refresh.CollapsingToolbarLayoutActivity" />
-        <activity android:name=".engine.recyclerview.refresh.MultiHeaderActivity" />
-        <activity android:name=".engine.recyclerview.refresh.RefreshMainActivity" />
+        <activity android:name=".app.activity.RecyclerViewActivity" />
+        <activity android:name=".app.engine.recyclerview.chat.ChatActivity" />
+        <activity android:name=".app.engine.recyclerview.multi.MultiActivity" />
+        <activity android:name=".app.engine.recyclerview.single.SingleActivity" />
+        <activity android:name=".app.activity.RecyclerViewMainActivity" />
+        <activity android:name=".app.activity.RxAndroidActivity" />
+        <activity android:name=".app.activity.RxJavaActivity" />
+        <activity android:name=".app.engine.recyclerview.staggered.StaggeredActivity" />
+        <activity android:name=".app.engine.recyclerview.refresh.DisableExampleActivity" />
+        <activity android:name=".app.engine.recyclerview.refresh.EmptyViewActivity" />
+        <activity android:name=".app.engine.recyclerview.refresh.GridActivity" />
+        <activity android:name=".app.engine.recyclerview.refresh.LinearActivity" />
+        <activity android:name=".app.engine.recyclerview.refresh.StaggeredGridActivity" />
+        <activity android:name=".app.engine.recyclerview.refresh.CollapsingToolbarLayoutActivity" />
+        <activity android:name=".app.engine.recyclerview.refresh.MultiHeaderActivity" />
+        <activity android:name=".app.engine.recyclerview.refresh.RefreshMainActivity" />
         <activity android:name=".test.TestActivity"/>
-        <service android:name=".service.BackgroundMonitorService" />
+        <service android:name=".app.service.BackgroundMonitorService" />
 
         <activity
-            android:name=".activity.AddActivity"
+            android:name=".app.activity.AddActivity"
             android:label="@string/title_activity_add"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.ScrollingActivity"
+            android:name=".app.activity.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.DrawerActivity"
+            android:name=".app.activity.DrawerActivity"
             android:label="@string/title_activity_drawer"
             android:theme="@style/AppTheme"></activity>
     </application>

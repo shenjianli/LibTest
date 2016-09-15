@@ -1,6 +1,6 @@
 package com.shenjianli.lib.test;
 
-import com.shenjianli.lib.MobileApp;
+import com.shenjianli.lib.app.MobileApp;
 import com.shenjianli.shenlib.net.mock.MockService;
 import com.shenjianli.shenlib.util.FileUtils;
 import com.shenjianli.shenlib.util.LogUtils;

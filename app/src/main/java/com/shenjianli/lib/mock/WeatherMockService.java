@@ -1,8 +1,8 @@
 package com.shenjianli.lib.mock;
 
 import com.google.gson.Gson;
-import com.shenjianli.lib.bean.WeatherInfo;
-import com.shenjianli.lib.bean.WeatherJson;
+import com.shenjianli.lib.model.WeatherInfo;
+import com.shenjianli.lib.model.WeatherJson;
 import com.shenjianli.shenlib.net.mock.MockService;
 import com.shenjianli.shenlib.util.LogUtils;
 

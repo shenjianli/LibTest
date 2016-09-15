@@ -1,8 +1,8 @@
 package com.shenjianli.lib.api;
 
 
-import com.shenjianli.lib.bean.ApiInfo;
-import com.shenjianli.lib.bean.WeatherJson;
+import com.shenjianli.lib.model.ApiInfo;
+import com.shenjianli.lib.model.WeatherJson;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
