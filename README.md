@@ -1,5 +1,11 @@
 # LibTest
-the first commit of framework use I am in project
+
+主要方便网络请求和日常开发Demo使用
+
+shenLib库的使用方法
+```
+compile 'com.github.shenjianli.shenlib:shenlib:1.0.1'
+```
 
 
 RecyclerView 的使用
