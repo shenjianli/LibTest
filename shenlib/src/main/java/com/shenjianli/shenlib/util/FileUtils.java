@@ -1,5 +1,11 @@
 package com.shenjianli.shenlib.util;
 
+import android.content.Context;
+import android.os.Environment;
+import android.os.StatFs;
+import android.text.TextUtils;
+
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,11 +20,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-
-import android.content.Context;
-import android.os.Environment;
-import android.os.StatFs;
-import android.text.TextUtils;
 
 
 /**
@@ -747,5 +748,58 @@ public class FileUtils {
             e.printStackTrace();
             return str;
         }
+    }
+
+    /**
+     * 按行读取txt
+     *
+     * @param is
+     * @return
+     * @throws Exception
+     */
+    private static String readTextFromSDcard(InputStream is){
+        InputStreamReader reader = new InputStreamReader(is);
+        BufferedReader bufferedReader = new BufferedReader(reader);
+        StringBuffer buffer = new StringBuffer("");
+        String str;
+        try {
+            while ((str = bufferedReader.readLine()) != null) {
+                buffer.append(str);
+                buffer.append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return buffer.toString();
+    }
+
+    /**
+     * 从assets中读取txt
+     */
+    public static  String readFromAssets(Context context,String fileName) {
+        try {
+            InputStream is = context.getAssets().open(fileName);
+            String text = readTextFromSDcard(is);
+            return text;
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    /**
+     * 从raw中读取txt
+     */
+    public static String readFromRaw(Context context,int fileId) {
+        try {
+            InputStream is = context.getResources().openRawResource(fileId);
+            String text = readTextFromSDcard(is);
+            return text;
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return "";
     }
 }

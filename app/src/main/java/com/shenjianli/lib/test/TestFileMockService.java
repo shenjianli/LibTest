@@ -14,9 +14,10 @@ public class TestFileMockService extends MockService {
     @Override
     public String getJsonData() {
 
-        //使用Gson把对象转化为Json字符串
-        String resultStr = FileUtils.read(MobileApp.getAppInstance(), "");
-        LogUtils.i("获得的json字符串为：" + resultStr);
+        //直接读取文件中的json字符串
+        //String resultStr = FileUtils.readFromRaw(MobileApp.getAppInstance(), R.raw.test);
+        String resultStr = FileUtils.readFromAssets(MobileApp.getAppInstance(),"test.txt");
+        LogUtils.i("文件中读取到的json字符串为：" + resultStr);
 
         //返回json字符串
         return resultStr;

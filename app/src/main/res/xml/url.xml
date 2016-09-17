@@ -6,5 +6,5 @@
     <Node
         Key="/shenjianli/test"
         Expires="300"
-        MockClass="com.shenjianli.lib.test.TestMockService"/>
+        MockClass="com.shenjianli.lib.test.TestFileMockService"/>
 </url>
