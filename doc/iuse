@@ -1,0 +1,7 @@
+Android Studio下修改方法:
+在manifest中添加<uses-sdk tools:overrideLibrary="android.support.v17.leanback"/>，
+不要忘了也要包含xmlns:tools="http://schemas.android.com/tools"。如下图：
+
+Error:Execution failed for task ':app:processDebugManifest'.
+> Manifest merger failed : uses-sdk:minSdkVersion 10 cannot be smaller than version 11 declared in library [com.jcodecraeer:xrecyclerview:1.2.7] /Users/shenjianli/Desktop/Android/TestVersion/app/build/intermediates/exploded-aar/com.jcodecraeer/xrecyclerview/1.2.7/AndroidManifest.xml
+Suggestion: use tools:overrideLibrary="com.jcodecraeer.xrecyclerview" to force usage
