@@ -3,7 +3,7 @@
 
 1.Android前台代码开发完成了，可是后台还没有封装好可以调试的数据或接口
 
-2.即使第1步中后台封装完成了可测试的数据，但是Android前台开发人员想完成边界测试，如一数据有很多文字时，前台显示是否合理，数据异常时界面如何显示等许许多多情况的测试，这时我们总是想要求后台给配置一些特殊情景的数据，可这时后台开发人员正在开发其他任务，他们根本不想搭理你的，也不想费劲帮你搞那些异常数据，而对这种情况，我们Android前台开发人员是否可完成自己来搞呢？答案是肯定的！
+2.即使第1步中后台封装完成了可测试的数据，但是Android前台开发人员想完成边界测试，如一数据有很多文字时，前台显示是否合理，数据异常时界面如何显示等许许多多情况的测试，这时我们总是想要求后台给配置一些特殊情景的数据，可这时后台开发人员正在开发其他任务，他们根本不想搭理你的，也不想费劲帮你搞那些异常数据，而对这种情况，我们Android前台开发人员是否可完成自己来搞呢？答案是肯定的！因为我们都相信方法总比问题多！
 
 3.在项目开发中我们一般会有一个内网开发环境，一个外网的环境，还有一个正式上线的环境，此外，对于Android开发人员来说最好有一个不依赖于后台的自测环境！面对不同的开发环境，需要配置不同的参数，如ip地址或域名！对于这个问题，我们Android开发人员需要对不同的环境进行不同的参数配置，来切换到不同的开发环境中，如何可以避免不同的环境下，我们需要每次手动修改配置参数以及如何可以快速的切换到不同环境的进行开发呢？
 
@@ -12,7 +12,17 @@
 争对这几个问题，我用AndroidStudio进行相关的脚本及代码逻辑的编写来提出解决方案，可能我给出的方法并不一定是最好的方法，但其总归是一种解决方法，希望每位读者看完或多或少有点收获。
 
 ## 1.本地MockServer模仿后台进行数据封装
-由于项目中网络框架采用的是Retrofit + Okhttp3所以增加了本地MockServer的拦截器来模仿后台返回数据，MockServerInterceptor拦截器的代码逻辑如下：
+对于上面所说的第1，2个问题，我们可以通过设置本地服务器来进行解决，这样Android开发在进行界面边界测试及显示边界效果方法，可以方便的修改本地服务数据来进行实验了，而不必要完全依赖于后台数据！
+设置本地测试服务优点：
+1. 根据边界测试内容随时修改数据，不需要依赖于后台数据
+2. 提高测试质量，便于开发人员进行自测
+3. 不需要依赖于服务器，就可正常请求显示数据
+4. 减少Android开发人员的bug数
+业内一般称本地的服务器为MockServer,故下面简述一下MockServer在本Lib中的设置及简单的使用方法：
+
+由于项目中网络框架采用的是Retrofit + Okhttp3所以为了使用本地MockServer，因此需要使用拦截器来模仿后台返回数据。
+
+MockServer的拦截器代码逻辑如下：
 
 ```
 package com.shenjianli.shenlib.net.interceptor;
@@ -81,7 +91,10 @@ public class MockServerInterceptor implements Interceptor{
 }
 
 ```
-有了拦截器后，我们需要把拦截器加入到网络请求的请求链中，使其生效，其具体代码如下：
+关于MockServier的拦截器中具体的实现逻辑，请读者阅读上面代码或源码，其中有详细的注释，我就不在此赘述了！
+
+有了拦截器后，我们需要把拦截器加入到网络请求的请求链中，使其生效
+设置本地MockServer的具体代码如下：
 
 ```
 /**
@@ -93,6 +106,7 @@ public class MockServerInterceptor implements Interceptor{
 ```
 
 ## 实例
+那如何使用上面配置的本地MockServer呢？下面将以一个具体的实现来说明一下，具体的使用步骤：
 
 ### 1.定义请求的接口
 ```
@@ -118,9 +132,10 @@ public interface TestApi {
 }
 
 ```
-在这个请求接口是，主要意思是向地址ServerUrl+shenjianli/test发送一个网络Get请求，传入的参数有id!
+在这里的请求接口，主要是根据传入的参数id来向服务器地址（https://github.com.cn/shenjianli/test）发送一个网络Get请求，来获取数据!
 
 ### 2.编写本地MockService
+写好请求数据的接口后，下一步是构造上面接口需要返回的测试数据，如下，是编写及返回测试数据的具体流程，有兴趣的读者可以阅读下面代码：
 ```
 package com.shenjianli.lib.test;
 
@@ -157,8 +172,11 @@ public class TestMockService extends MockService {
 }
 
 ```
-主要是继承MockService类并实现一个返回Json字符串的方法，其中生成的json字符串需要与第一步中类Test相对应，这样才能正确的向返回的Test对象赋值！
+TestMockService主要是继承MockService类并实现一个返回Json字符串的方法，其中生成的json字符串需要与第一步中类Test相对应，这样才能正确的向返回的Test对象赋值！
+
 ### 3.关联请求与MockService
+有了请求的接口，有了返回测试数据的json字符串，下面就是应该把它们进行关联了，其关联的配置文件如下：
+
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <url>
@@ -173,8 +191,11 @@ public class TestMockService extends MockService {
         MockClass="com.shenjianli.lib.test.TestMockService"/>
 </url>
 ```
-在项目中App模块下的res/xml/url.xml文件中增加如上的结点，其中Key与第一步的请求地址相同，MockClass代表的是Key所对应的MockService对应的类所在的路径。
+在项目中App模块下的res/xml/url.xml文件中增加如上的结点，其中Key与第一步的请求地址相同，MockClass代表的是Key所对应的MockService类所在的路径。
+
 ### 4.进行调用请求使用MockService
+当请求json数据的接口和返回的json相关联以后，下面就是最开心的时间了，开如使用MockService:
+
 ```
 package com.shenjianli.lib.test;
 
@@ -232,4 +253,8 @@ public class TestActivity extends AppCompatActivity {
     }
 }
 ```
+在上面的TestActivity中当点击按钮时，会通过网络框架NetClient来进行网络请求，当拦截器拦到请求的url(/shenjianli/test)后，他会去配置文件（res/xml/url.xml）去找看是否有对应的结点，若有则根据Node结点中的MockClass来通过反射机制来创建具体的MockServer对象，来返回用于测试的json字符串！当网络框架接收到json字符串后会怎么通过GsonFactory来转化为具体的测试数据对象，返回到Android的View层来进行具体的显示！这样就达到的模拟服务器返回json数据的服务了！这样以后Android开发人员再也不用担心没有符合心意的测试数据了，再也不用为服务器启动不了或出现异常而烦恼了！
+
+
+
 项目主要是争对不同的版本打包及运行进行不同的配置，项目中主要能这两种方式来实现不同环境的打包及运行环境
