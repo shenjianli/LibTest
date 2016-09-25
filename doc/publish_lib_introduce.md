@@ -60,4 +60,4 @@ dependencies {
 实际上可以在Android Studio上使用的除了Maven 仓库之外还有另外一种仓库：Ivy 仓库 。但是根据我的经验来看，我还没看到任何人用过它，包括我，因此本文就直接忽略了。
 
 
-(http://www.open-open.com/lib/view/open1435109824278.html)
+[生成Jcenter上的lib库](http://www.open-open.com/lib/view/open1435109824278.html)

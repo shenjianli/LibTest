@@ -258,3 +258,197 @@ public class TestActivity extends AppCompatActivity {
 
 
 项目主要是争对不同的版本打包及运行进行不同的配置，项目中主要能这两种方式来实现不同环境的打包及运行环境
+
+## 1.通过配置文件
+
+```
+#进行自测时使用MockService返回数据
+#mode=test
+
+#开发模式
+mode=dev
+baseUrl=http://m.dev.shen.com.cn/
+
+#正式发版模式
+#mode=release
+#baseUrl=http://m.mall.shen.com.cn/
+```
+
+
+```
+/*
+ 根据Raw中的mobile配置文件来初始化开发模式
+ */
+private void initByRawConfigFile() {
+     if(FileUtils.getProperties(this, R.raw.mode)){
+      String mode = FileUtils.getPropertyValueByKey("mode");
+      String baseUrl = FileUtils.getPropertyValueByKey("baseUrl");
+      LogUtils.i("开发模式为：" + mode);
+      if(Constants.TEST_MODE.equals(mode)){
+            LibApp.getLibInstance().setLogEnable(true);
+            LibApp.getLibInstance().setUrlConfigManager(R.xml.url);
+       }
+       else if(Constants.DEV_MODE.equals(BuildConfig.MODE)){
+            LibApp.getLibInstance().setLogEnable(true);
+            LibApp.getLibInstance().setServerBaseUrl(baseUrl);
+       }
+       else if(Constants.RELEASE_MODE.equals(BuildConfig.MODE)){
+             LibApp.getLibInstance().setLogEnable(false);
+             LibApp.getLibInstance().setServerBaseUrl(baseUrl);
+       }
+   }
+}
+
+```
+
+## 2通知Gradle脚本程序
+
+```
+//获取时间戳
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyy_MMdd_HHmm')
+    return formattedDate
+}
+
+def releaseTime() {
+    return new Date().format("yyyy_MM_dd", TimeZone.getTimeZone("UTC"))
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    signingConfigs {
+        config{
+            storeFile file('../icbc_release_key')
+            storePassword 'Password123!'
+            keyAlias 'icbc_release_key'
+            keyPassword 'Password123!'
+        }
+    }
+
+
+    defaultConfig {
+        applicationId "com.shenjianli.lib"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+            minifyEnabled false
+            zipAlignEnabled true
+        }
+        debug {
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //signingConfig signingConfigs.config
+            minifyEnabled false
+            zipAlignEnabled false
+        }
+    }
+
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
+
+    productFlavors {
+        Dev{
+            applicationId "com.shenjianli.lib"
+            manifestPlaceholders = [app_name:"开发版" ,icon: "@mipmap/ic_launcher",CHANNEL_VALUE:"Dev"]
+            //在java代码中具体的使用方式为：context.getResources().getString(R.string.strKey);
+            resValue("string" , "strKey","dev版本")
+            resValue ('string','isDebug','true')
+            buildConfigField "boolean", "AUTO_UPDATES", "false"
+            buildConfigField("String","MODE","\"dev\"")
+            buildConfigField("String","SERVER_URL","\"http://m.dev.shen.com.cn/\"")
+        }
+        DevTest{
+            applicationId "com.shenjianli.lib.test"
+            manifestPlaceholders = [app_name:"自测版" ,icon: "@mipmap/ic_launcher",CHANNEL_VALUE:"Test"]
+            //在java代码中具体的使用方式为：context.getResources().getString(R.string.strKey);
+            resValue("string" , "strKey","beta版本")
+            resValue ('string','isDebug','true')
+            buildConfigField "boolean", "AUTO_UPDATES", "false"
+            buildConfigField("String","MODE","\"test\"")
+            //测试版本主要使用本地MockService来返回数据，可以不设置
+            buildConfigField("String","SERVER_URL","\"test\"")
+
+        }
+        Releases{
+            applicationId "com.shenjianli.lib.release"
+            manifestPlaceholders = [app_name:"正式版" ,icon: "@mipmap/ic_launcher_releases",CHANNEL_VALUE:"Releases"]
+            resValue("string" , "strKey","release版本")
+            resValue ('string','isDebug','false')
+            buildConfigField "boolean", "AUTO_UPDATES", "false"
+            buildConfigField("String","MODE","\"release\"")
+            buildConfigField("String","SERVER_URL","\"http://m.mall.shen.com.cn/\"")
+        }
+    }
+
+    //添加如下代码
+//    productFlavors.all { flavors->
+//        flavors.manifestPlaceholders=[CHANNEL_VALUE:name]
+//    }
+    //修改生成的apk名字
+    applicationVariants.all{
+        variant->
+        variant.outputs.each {
+            output->
+            def oldFile = output.outputFile
+            def newName = '';
+            if(variant.buildType.name.equals('release')){
+//                println(variant.productFlavors[0].name)
+                def releaseApkName = 'product_' + defaultConfig.versionName +
+                        '_' + variant.productFlavors[0].name + getDate() +'.apk'
+                output.outputFile = new File(oldFile.parent, releaseApkName)
+            }
+            if(variant.buildType.name.equals('Beta')){
+                newName = oldFile.name.replace(".apk", "-v" + defaultConfig.versionName
+                        + "-build" + getDate() + ".apk")
+                output.outputFile = new File(oldFile.parent, newName)
+            }
+            if(variant.buildType.name.equals('Dev')){
+                output.outputFile = new File(output.outputFile.parent, "ShenLibTest_"
+                        + defaultConfig.versionCode + "_v" + defaultConfig.versionName +
+                        "_"+buildType.name+"_"+ getDate() +".apk");
+            }
+        }
+    }
+
+    //移除lint检测的error
+    lintOptions {
+        abortOnError false
+    }
+
+}
+
+```
+
+```
+ /*
+    根据主项目中的gradle配置文件开初始化不同的开发模式
+ */
+ private void initByGradleFile() {
+
+    if(Constants.TEST_MODE.equals(BuildConfig.MODE)){
+         LibApp.getLibInstance().setLogEnable(true);
+         LibApp.getLibInstance().setUrlConfigManager(R.xml.url);
+     }
+     else if(Constants.DEV_MODE.equals(BuildConfig.MODE))
+     {
+         LibApp.getLibInstance().setLogEnable(true);
+         LibApp.getLibInstance().setServerBaseUrl(BuildConfig.SERVER_URL);
+     }
+     else if(Constants.RELEASE_MODE.equals(BuildConfig.MODE)){
+         LibApp.getLibInstance().setLogEnable(true);
+         LibApp.getLibInstance().setServerBaseUrl(BuildConfig.SERVER_URL);
+     }
+   }
+```
