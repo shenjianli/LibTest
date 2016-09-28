@@ -257,10 +257,10 @@ public class TestActivity extends AppCompatActivity {
 
 
 
-项目主要是争对不同的版本打包及运行进行不同的配置，项目中主要能这两种方式来实现不同环境的打包及运行环境
+在项目中，不同版本的打包及运行需要配置不同的参数，那么我们如何对不同版本进行不同的参数的配置呢？在本项目中主要通过下面两种方式来实现不同版本下的参数配置：
 
 ## 1.通过配置文件
-这一种方式是通过配置文件来配置不同的开发环境，其不依赖于Gradle脚本，在app模块下res/raw下面创建配置文件mode.properties，下面是配置文件的主要内容：
+这一种方式是通过配置文件来配置不同的开发环境，其不依赖于Gradle脚本，即使在Eclipse下也可使用，首页，在app模块的res/raw目录下创建配置文件mode.properties，复制下面内容到此配置文件中。
 
 ```
 #进行自测时使用MockService返回数据
@@ -277,7 +277,7 @@ baseUrl=http://m.dev.shen.com.cn/
 #baseUrl=http://m.mall.shen.com.cn/
 ```
 
-mode表示不同的开发模式，其在具体的运行时，可通过配置不同的值来切换不同的开发模式
+mode表示不同的开发模式，其在具体的运行时，可通过配置不同的值来切换不同的开发模式，当配置为test时可以使用本地的MockService来返回数据，而不必要依赖于具体的服务器。
 baseUrl表示网络请求的域名地址，可为不同的开发模式配置不同的地址，当然也可以配置成具体的ip地址+端口号，如http://127.0.0.1:8080/
 
 
@@ -309,7 +309,7 @@ private void initByRawConfigFile() {
 在Application中根据上面的配置文件参数来设置不同环境的其他的一些设置选项，若为Test模式，则开启log日志记录，使用本地MockService进行数据返回；若为Dev模式，则开启日志，设置请求的基础地址；若为Release正式版本，则需要关闭日志输出，同时设置为正式上线时使用的基础地址（一般情况下为域名地址）
 
 ## 2.通过Gradle脚本程序
-根据Android Studio 中的脚本程序Gradle来进行设置不同的开发模式：
+根据Android Studio 中的脚本程序Gradle来进行不同环环境下，设置不同的开发模式参数：
 在app模块下build.gradle中编写下面代码：
 
 ```
@@ -440,6 +440,9 @@ android {
 
 ```
 在上面的配置文件中的  productFlavors 选项下，Dev为开发环境，DevTest为自测环境，主要是使用上面所说的MockService来调试界面显示，Releases为正式版，主要是上线或是做正式版本。
+
+在productFlavors下不同的开发环境可为应用配置不同的包名，图标，应用名称，这样包名不同，在同一个手机上就可以同时安装不同环境下的app，这样可以方便我们进行测试及使用！这恰好解决了前面所说的第4个问题！
+
 ```
  /*
     根据主项目中的gradle配置文件开初始化不同的开发模式
