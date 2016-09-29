@@ -3,22 +3,23 @@
 
 1.Android前台代码开发完成了，可是后台还没有封装好可以调试的数据或接口
 
-2.即使第1步中后台封装完成了可测试的数据，但是Android前台开发人员想完成边界测试，如一数据有很多文字时，前台显示是否合理，数据异常时界面如何显示等许许多多情况的测试，这时我们总是想要求后台给配置一些特殊情景的数据，可这时后台开发人员正在开发其他任务，他们根本不想搭理你的，也不想费劲帮你搞那些异常数据，而对这种情况，我们Android前台开发人员是否可完成自己来搞呢？答案是肯定的！因为我们都相信方法总比问题多！
+2.即使第1步中后台封装完成了可测试的数据，但是Android前台开发人员想完成边界测试，如一数据有很多文字时，前台显示是否合理，数据异常时界面如何显示等许许多多情况的测试，这时我们总是想去要求后台给配置一些特殊情景的数据，可这时后台开发人员正在开发其他任务，他们根本不想搭理你的，也不想费劲帮你搞那些异常数据，而对于这种情况，我们Android前台开发人员是否可完全自己来搞呢？答案是肯定的！因为我们都相信方法总比问题多！
 
-3.在项目开发中我们一般会有一个内网开发环境，一个外网的环境，还有一个正式上线的环境，此外，对于Android开发人员来说最好有一个不依赖于后台的自测环境！面对不同的开发环境，需要配置不同的参数，如ip地址或域名！对于这个问题，我们Android开发人员需要对不同的环境进行不同的参数配置，来切换到不同的开发环境中，如何可以避免不同的环境下，我们需要每次手动修改配置参数以及如何可以快速的切换到不同环境的进行开发呢？
+3.在项目开发中我们一般会有一个内网开发环境，一个外网的环境，还有一个正式上线的环境，此外，对于Android开发人员来说最好有一个不依赖于后台的自测环境！面对不同的开发环境，需要配置不同的参数，如ip地址或域名！对于这个问题，我们Android开发人员需要对不同的环境进行不同的参数配置，来切换到不同的开发环境中，如何可以避免不同的环境下，我们不需要每次手动修改配置参数以及如何可以快速的切换到不同环境的进行开发呢？
 
-4.对于测试人员及开发人员开说，最好能在同一台手机上安装不同环境版本apk来方便我们验证不同环境下的问题，避免不停的进行客户端的安装替换！经常在我正在开发的得劲时，有人喊到“帮忙打一个什么环境的apk”,而这时你可能恰好不是他所要的环境，这时你可能就需要到程序中一个个的修改程序的配置参数！这是多么麻烦低效的事啊！
+4.对于测试人员或开发人员开说，最好能在同一台手机上安装不同环境版本apk来方便我们验证不同环境下的问题，这样可以避免不停的进行客户端的安装替换，节约宝贵的开发时间提高开发效率！经常在我正在开发的得劲时，有人喊到“帮忙打一个什么环境的apk”,而这时你可能恰好不是他所要的环境，这时你可能就需要到程序中一个个的修改程序的配置参数！这是多么麻烦低效的事啊！
 
-争对这几个问题，我用AndroidStudio进行相关的脚本及代码逻辑的编写来提出解决方案，可能我给出的方法并不一定是最好的方法，但其总归是一种解决方法，希望每位读者看完或多或少有点收获。
+争对这几个问题，我用AndroidStudio进行相关的脚本及代码逻辑的编写来提出解决方案，可能我给出的方法并不一定是最好的，但其总归是一种解决方法，希望每位读者看完或多或少有点收获。
 
 ## 1.本地MockServer模仿后台进行数据封装
-对于上面所说的第1，2个问题，我们可以通过设置本地服务器来进行解决，这样Android开发在进行界面边界测试及显示边界效果方法，可以方便的修改本地服务数据来进行实验了，而不必要完全依赖于后台数据！
+对于上面所说的第1，2个问题，我们可以通过设置本地服务器来进行解决，这样Android开发在进行界面边界测试及显示边界效果时，可以方便的修改本地服务数据来进行实验了，而不必要完全依赖于后台数据！
+
 设置本地测试服务优点：
 1. 根据边界测试内容随时修改数据，不需要依赖于后台数据
 2. 提高测试质量，便于开发人员进行自测
 3. 不需要依赖于服务器，就可正常请求显示数据
 4. 减少Android开发人员的bug数
-业内一般称本地的服务器为MockServer,故下面简述一下MockServer在本Lib中的设置及简单的使用方法：
+业内一般称本地的服务器为MockServer,故下面简述一下MockServer，在本项目中的设置及简单的使用方法：
 
 由于项目中网络框架采用的是Retrofit + Okhttp3所以为了使用本地MockServer，因此需要使用拦截器来模仿后台返回数据。
 
@@ -105,8 +106,8 @@ public class MockServerInterceptor implements Interceptor{
  builder.addInterceptor(new MockServerInterceptor());
 ```
 
-## 实例
-那如何使用上面配置的本地MockServer呢？下面将以一个具体的实现来说明一下，具体的使用步骤：
+## 使用实例
+当有了上面的MockServer,那如何使用呢？下面将以一个具体的实现来说明一下，具体的使用步骤：
 
 ### 1.定义请求的接口
 ```
@@ -132,10 +133,10 @@ public interface TestApi {
 }
 
 ```
-在这里的请求接口，主要是根据传入的参数id来向服务器地址（https://github.com.cn/shenjianli/test）发送一个网络Get请求，来获取数据!
+在这里的请求接口，主要是根据传入的参数id来向服务器地址（https://github.com.cn/shenjianli/test）发送一个Get网络请求，来获取数据!
 
 ### 2.编写本地MockService
-写好请求数据的接口后，下一步是构造上面接口需要返回的测试数据，如下，是编写及返回测试数据的具体流程，有兴趣的读者可以阅读下面代码：
+写好请求数据的接口后，下一步是构造上面接口所需要的返回测试数据，如下，是编写及返回测试数据的具体流程，有兴趣的读者可以阅读下面代码：
 ```
 package com.shenjianli.lib.test;
 
@@ -255,12 +256,15 @@ public class TestActivity extends AppCompatActivity {
 ```
 在上面的TestActivity中当点击按钮时，会通过网络框架NetClient来进行网络请求，当拦截器拦到请求的url(/shenjianli/test)后，他会去配置文件（res/xml/url.xml）去找看是否有对应的结点，若有则根据Node结点中的MockClass来通过反射机制来创建具体的MockServer对象，来返回用于测试的json字符串！当网络框架接收到json字符串后会怎么通过GsonFactory来转化为具体的测试数据对象，返回到Android的View层来进行具体的显示！这样就达到的模拟服务器返回json数据的服务了！这样以后Android开发人员再也不用担心没有符合心意的测试数据了，再也不用为服务器启动不了或出现异常而烦恼了！
 
+通过上面MockServer的使用，基本上可以解决上面的问题1和问题2了，以后再也不用担心没有网络，没有后台服务器了！Android开发人员终于可以开心的开发了！
+
+
 
 
 在项目中，不同版本的打包及运行需要配置不同的参数，那么我们如何对不同版本进行不同的参数的配置呢？在本项目中主要通过下面两种方式来实现不同版本下的参数配置：
 
 ## 1.通过配置文件
-这一种方式是通过配置文件来配置不同的开发环境，其不依赖于Gradle脚本，即使在Eclipse下也可使用，首页，在app模块的res/raw目录下创建配置文件mode.properties，复制下面内容到此配置文件中。
+这一种方式是通过配置文件来配置不同的开发环境，其不依赖于Gradle脚本，即使在Eclipse下也可使用，首先，在app模块的res/raw目录下创建配置文件mode.properties，复制下面内容到此配置文件中。
 
 ```
 #进行自测时使用MockService返回数据
@@ -466,3 +470,93 @@ android {
 ```
 
 在Application中根据上面的Gradle参数来生成的BuildConfig中的值来设置不同环境的其他的设置选项，若为Test模式，则开启log日志记录，使用本地MockService进行数据返回；若为Dev模式，则开启日志，设置请求的基础地址；若为Release正式版本，则需要关闭日志输出，同时设置为正式上线时使用的基础地址（一般情况下为域名地址）
+
+
+
+## 自动打包
+
+gradlew 是什么东西呢，和gradle貌似不大一样，肯定有关系。没错，他就是 gradle wrapper，意思是gradle的一个包装，大家可以理解为在这个项目本地就封装了gradle，比如我的项目是HelloWord, 在HelloWord/gradle/wrapper/gralde-wrapper.properties文件中声明了它指向的目录和版本，比如我的内容是：
+
+```
+distributionBase=GRADLE_USER_HOME
+distributionPath=wrapper/dists
+zipStoreBase=GRADLE_USER_HOME
+zipStorePath=wrapper/dists
+distributionUrl=https\://services.gradle.org/distributions/gradle-2.10-all.zip
+
+```
+
+如果你项目没有该文件的话，那么gradlew会到~/.gradle/wrapper/dists/gradle-2.10-all下寻找，或者你新建给文件，内容复制到里面。其实你会发现是同一个目录咯。里面会有个随机数的文件夹，里面就是gradle，只要下载成功即可用grdlew wrapper的命令代替全局的gradle命令。
+
+常用命令如下：(linux下是./gradlew，该脚本在项目下，windows直接gradlew即可)
+
+./gradlew -v 版本号，首次运行，没有gradle的要下载的哦。
+/gradlew clean 删除HelloWord/app目录下的build文件夹
+
+./gradlew build 检查依赖并编译打包
+
+这里注意的是 ./gradlew build 命令把debug、release环境的包都打出来，生成的包在目录HelloWord/app/build/outputs/apk/下。如果正式发布只需要打release的包，该怎么办呢，下面介绍一个很有用的命令 assemble, 如
+
+./gradlew assembleDebug 编译并打Debug包
+
+./gradlew assemblexiaomiDebug 编译并打xiaomi的debug包，其他类似
+
+./gradlew assembleRelease 编译并打Release的包
+
+./gradlew assemblexiaomiRelease 编译并打xiaomi的Release包，其他类似
+
+./gradlew installRelease Release模式打包并安装
+
+./gradlew uninstallRelease 卸载Release模式包
+
+补充
+
+1 gradlew build 和 gradle build 有区别吗?
+
+使用gradle wrapper是gradle官方推荐的build方式，而gradlew正是运行了wrapper task之后生成的（运行wrapper task是Android Studio自动做的）。使用gralde wrapper的一个好处就是每个项目可以依赖不同版本的gradle，构建的时候gradle wrapper会帮你自动下载所依赖的版本的gradle。而如果你使用gradle build的话，同时你又有多个项目使用不同版本的gradle，那就需要你手动在自己的机器上配置多个版本的gradle，稍微麻烦一些
+
+2 自定义apk包名
+
+gradle脚本大法好：
+
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+def gitVersionCode() {
+    def cmd = 'git rev-list HEAD --first-parent --count'
+    cmd.execute().text.trim().toInteger()
+}
+
+def gitVersionTag() {
+    def cmd = 'git describe --tags'
+    def version = cmd.execute().text.trim()
+
+    def pattern = "-(\\d+)-g"
+    def matcher = version =~ pattern
+
+    if (matcher) {
+        version = version.substring(0, matcher.start()) + "." + matcher[0][1]
+    } else {
+        version = version + ".0"
+    }
+
+    return version
+}
+
+
+
+//自定义apk安装包名
+applicationVariants.all { variant ->
+    variant.mergedFlavor.versionCode = gitVersionCode()
+    variant.mergedFlavor.versionName = gitVersionTag()
+    variant.outputs.each { output ->
+        output.outputFile = new File(
+                output.outputFile.parent + "/${variant.buildType.name}",
+                "HelloWord-${variant.buildType.name}-v${variant.versionName}-${variant.productFlavors[0].name}-${releaseTime()}.apk".toLowerCase())
+    }
+}
+
+
+
+
