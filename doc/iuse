@@ -4,4 +4,9 @@ Android Studio下修改方法:
 
 Error:Execution failed for task ':app:processDebugManifest'.
 > Manifest merger failed : uses-sdk:minSdkVersion 10 cannot be smaller than version 11 declared in library [com.jcodecraeer:xrecyclerview:1.2.7] /Users/shenjianli/Desktop/Android/TestVersion/app/build/intermediates/exploded-aar/com.jcodecraeer/xrecyclerview/1.2.7/AndroidManifest.xml
-Suggestion: use tools:overrideLibrary="com.jcodecraeer.xrecyclerview" to force usage
+Suggestion: use tools:overrideLibrary="com.jcodecraeer.xrecyclerview" to force
+
+
+
+AndroidStudio中多个Module依赖同一个jar的解决方案
+http://blog.csdn.net/u013134391/article/details/51538511
