@@ -10,3 +10,38 @@ Suggestion: use tools:overrideLibrary="com.jcodecraeer.xrecyclerview" to force
 
 AndroidStudio中多个Module依赖同一个jar的解决方案
 http://blog.csdn.net/u013134391/article/details/51538511
+
+
+compile 'com.android.support:support-v4:22.1.1'
+compile ('com.android.support:appcompat-v7:22.1.1') {
+    exclude module: 'support-v4'
+}
+compile ('com.facebook.android:facebook-android-sdk:4.2.0') {
+    exclude module: 'support-v4'
+}
+compile ('com.github.navasmdc:PhoneTutorial:1.+@aar') {
+    exclude module: 'support-v4'
+}
+
+
+http://www.tuicool.com/articles/ey6vqez
+撑起头顶的天  22:29:04
+http://blog.csdn.net/u012214750/article/details/52692450
+撑起头顶的天  22:33:41
+compile ('com.android.support:appcompat-v7:22.0.0') {
+        exclude module: 'support-v4'
+    }
+撑起头顶的天  22:34:21
+compile ('com.android.support:appcompat-v7:22.1.1') {
+    exclude module: 'support-v4'
+}
+compile ('com.facebook.android:facebook-android-sdk:4.2.0') {
+    exclude module: 'support-v4'
+}
+compile ('com.github.navasmdc:PhoneTutorial:1.+@aar') {
+    exclude module: 'support-v4'
+}
+撑起头顶的天  22:35:36
+http://www.howtobuildsoftware.com/index.php/how-do/hwN/android-studio-duplicates-javautilzipzipexception-duplicate-entry-android-studio
+撑起头顶的天  22:35:46
+http://stackoverflow.com/questions/32007296/duplicate-entry-in-android-studio
