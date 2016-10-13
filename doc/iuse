@@ -52,3 +52,54 @@ http://stackoverflow.com/questions/30769483/error-java-util-zip-zipexception-dup
 http://www.voidcn.com/blog/u011930471/article/p-4960047.html
 
 http://blog.csdn.net/wx_jin/article/details/50853609
+
+
+
+DisplayMetrics metrics = new DisplayMetrics();
+ getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+
+ Constants
+ int	DENSITY_280
+ Intermediate density for screens that sit between DENSITY_HIGH (240dpi) and DENSITY_XHIGH (320dpi).
+ int	DENSITY_360
+ Intermediate density for screens that sit somewhere between DENSITY_XHIGH (320 dpi) and DENSITY_XXHIGH (480 dpi).
+ int	DENSITY_400
+ Intermediate density for screens that sit somewhere between DENSITY_XHIGH (320 dpi) and DENSITY_XXHIGH (480 dpi).
+ int	DENSITY_420
+ Intermediate density for screens that sit somewhere between DENSITY_XHIGH (320 dpi) and DENSITY_XXHIGH (480 dpi).
+ int	DENSITY_560
+ Intermediate density for screens that sit somewhere between DENSITY_XXHIGH (480 dpi) and DENSITY_XXXHIGH (640 dpi).
+ int	DENSITY_DEFAULT
+ The reference density used throughout the system.
+ int	DENSITY_HIGH
+ Standard quantized DPI for high-density screens.
+ int	DENSITY_LOW
+ Standard quantized DPI for low-density screens.
+ int	DENSITY_MEDIUM
+ Standard quantized DPI for medium-density screens.
+ int	DENSITY_TV
+ This is a secondary density, added for some common screen configurations.
+ int	DENSITY_XHIGH
+ Standard quantized DPI for extra-high-density screens.
+ int	DENSITY_XXHIGH
+ Standard quantized DPI for extra-extra-high-density screens.
+ int	DENSITY_XXXHIGH
+ Standard quantized DPI for extra-extra-extra-high-density screens.
+ Fields
+ public static final int	DENSITY_DEVICE_STABLE
+ The device's stable density.
+ public float	density
+ The logical density of the display.
+ public int	densityDpi
+ The screen density expressed as dots-per-inch.
+ public int	heightPixels
+ The absolute height of the available display size in pixels.
+ public float	scaledDensity
+ A scaling factor for fonts displayed on the display.
+ public int	widthPixels
+ The absolute width of the available display size in pixels.
+ public float	xdpi
+ The exact physical pixels per inch of the screen in the X dimension.
+ public float	ydpi
+ The exact physical pixels per inch of the screen in the Y dimension.
