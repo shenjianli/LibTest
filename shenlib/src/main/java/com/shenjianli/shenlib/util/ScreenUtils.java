@@ -14,7 +14,6 @@ public class ScreenUtils {
         DisplayMetrics metrics = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        DisplayMetrics.DENSITY_HIGH
         result.append("本手机的屏幕信息：").append("density=").append(metrics.density)
                 .append(",densityDpi").append(metrics.densityDpi)
                 .append(",heightPixels").append(metrics.heightPixels)
