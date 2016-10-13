@@ -27,6 +27,7 @@ import com.shenjianli.shenlib.net.RetrofitCallback;
 import com.shenjianli.shenlib.receiver.NetBroadcastReceiver;
 import com.shenjianli.shenlib.util.CustomToast;
 import com.shenjianli.shenlib.util.LogUtils;
+import com.shenjianli.shenlib.util.ScreenUtils;
 import com.shenjianli.shenlib.widget.CylinderImageView;
 
 import java.util.ArrayList;
@@ -63,6 +64,7 @@ public class MainActivity extends BaseActivity implements NetBroadcastReceiver.N
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        LogUtils.i(ScreenUtils.getScreenInfo(this));
         ButterKnife.bind(this);
         NetBroadcastReceiver.addNetStateListener(this);
         startService(new Intent(this, BackgroundMonitorService.class));
