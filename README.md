@@ -713,5 +713,12 @@ applicationVariants.all { variant ->
 
 
 
+缓存使用
 
+1.在请求接口中增加
+
+    @Headers("Cache-Control: public, max-age=600")
+    @GET("adat/sk/{cityId}.html")
+    Call<WeatherJson> getWeather(@Path("cityId") String cityId);
+2.max-age=600表示是缓存时间为10分钟
 
