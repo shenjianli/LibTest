@@ -1,2 +1,2 @@
 rd /s /q .\ICBCMall\build
-gradlew assemblezongheRelease
+gradlew assembleDevRelease
