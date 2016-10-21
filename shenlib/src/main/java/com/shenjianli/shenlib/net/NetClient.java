@@ -35,7 +35,10 @@ public class NetClient {
              */
 	         File cacheFile = new File(LibApp.getLibInstance().getMobileContext().getExternalCacheDir(), "MallCache");
 	         Cache cache = new Cache(cacheFile, Constants.CACHE_SIZE);
-             builder.cache(cache).addInterceptor(new CacheInterceptor());
+            CacheInterceptor noNetcache = new CacheInterceptor();//无网络拦截器
+            builder.cache(cache).addInterceptor(new CacheInterceptor());
+            builder.interceptors().add(noNetcache);//无网络
+            builder.networkInterceptors().add(noNetcache);//有网络
             /**
              *  公共参数，代码略
              */

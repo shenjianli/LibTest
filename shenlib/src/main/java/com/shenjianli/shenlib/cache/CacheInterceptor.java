@@ -25,13 +25,16 @@ public class CacheInterceptor implements Interceptor{
         }
         //获取到网络响应
         Response response = chain.proceed(request);
+        String cacheControl = request.cacheControl().toString();
+
         //在有网络情况下直接使用网络请求回来的数据
         if (AppUtils.networkIsAvailable(LibApp.getLibInstance().getMobileContext())) {
             int maxAge = 0;
             // 有网络时 设置缓存超时时间0个小时
             response.newBuilder()
-                    .header("Cache-Control", "public, max-age=" + maxAge)
                     .removeHeader("")// 清除头信息，因为服务器如果不支持，会返回一些干扰信息，不清除下面无法生效
+                    //.header("Cache-Control", "public, max-age=" + maxAge)
+                    .header("Cache-Control", cacheControl)
                     .build();
             LogUtils.i(this.getClass().getSimpleName(), "有网络使用网络请求");
         } else {//无网络时，设置本地缓存及超时时间
