@@ -2,4 +2,17 @@
     <declare-styleable name="CylinderImageViewStyle">
         <attr name="cylinder_image" format="reference"/>
     </declare-styleable>
+
+    <declare-styleable name="msv_SimpleMultiStateView">
+        <attr name="msv_emptyView" format="reference"/>
+        <attr name="msv_loadingView" format="reference"/>
+        <attr name="msv_failView" format="reference"/>
+        <attr name="msv_contentView" format="reference"/>
+        <attr name="msv_viewState" format="enum">
+            <enum name="content" value="10001"/>
+            <enum name="loading" value="10002"/>
+            <enum name="empty" value="10003"/>
+            <enum name="fail" value="10004"/>
+        </attr>
+    </declare-styleable>
 </resources>
