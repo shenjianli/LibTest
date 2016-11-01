@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
+import com.shenjianli.shenlib.R;
+
+
 /**
  * Created by xdj on 16/2/3.
  * 多状态视图

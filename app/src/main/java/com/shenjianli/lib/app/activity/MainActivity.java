@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.shenjianli.lib.R;
 import com.shenjianli.lib.app.adapter.RecylerViewAdapter;
 import com.shenjianli.lib.api.ApiStores;
+import com.shenjianli.lib.app.engine.mutilview.MultiViewMainActivity;
 import com.shenjianli.lib.model.WeatherJson;
 import com.shenjianli.lib.model.DemoData;
 import com.shenjianli.lib.app.engine.home.PreHomeDataManager;
@@ -96,6 +97,10 @@ public class MainActivity extends BaseActivity implements NetBroadcastReceiver.N
                         intent = new Intent(MainActivity.this, TestActivity.class);
                         startActivity(intent);
                         break;
+                    case 5:
+                        intent = new Intent(MainActivity.this, MultiViewMainActivity.class);
+                        startActivity(intent);
+                        break;
                     default:
                         break;
                 }
@@ -113,7 +118,7 @@ public class MainActivity extends BaseActivity implements NetBroadcastReceiver.N
 
         DemoData demodata = new DemoData();
         demodata.setImgId(R.drawable.ic_launcher);
-        demodata.setName("RecyclerView Demo");
+        demodata.setName("RecyclerView");
         mDemoDatas.add(demodata);
 
         demodata = new DemoData();
@@ -134,6 +139,11 @@ public class MainActivity extends BaseActivity implements NetBroadcastReceiver.N
         demodata = new DemoData();
         demodata.setImgId(R.drawable.ic_launcher);
         demodata.setName("Test");
+        mDemoDatas.add(demodata);
+
+        demodata = new DemoData();
+        demodata.setImgId(R.drawable.ic_launcher);
+        demodata.setName("MultiView");
         mDemoDatas.add(demodata);
 
         for (int i = 0; i < 5; i++) {
