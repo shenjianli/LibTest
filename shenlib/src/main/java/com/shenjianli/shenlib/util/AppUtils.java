@@ -1,14 +1,12 @@
 package com.shenjianli.shenlib.util;
 
-import android.app.Application;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-
-import com.shenjianli.shenlib.LibApp;
 
 /**
  * 跟App相关的辅助类
@@ -116,5 +114,27 @@ public class AppUtils
 			return networkInfo.isConnected();
 		}
 		return false;
+	}
+
+	/**
+	 * @param context
+	 * @return 手机上每个App的内存限制大小
+	 */
+	public static String getMemoryLimited(Context context) {
+		StringBuffer result = new StringBuffer();
+		ActivityManager activityManager =(ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
+		result.append("最大内存限制：");
+		result.append(activityManager.getMemoryClass());
+		result.append(",");
+
+		result.append("最大内存限制：" );
+		result.append(activityManager.getMemoryClass());
+		result.append(",");
+
+
+		result.append("运行时最大内存限制：");
+		result.append(Runtime.getRuntime().maxMemory()/(1024*1024));
+
+		return result.toString();
 	}
 }
