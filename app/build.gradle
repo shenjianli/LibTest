@@ -142,4 +142,8 @@ dependencies {
     compile 'com.jcodecraeer:xrecyclerview:1.2.7'
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.facebook.fresco:fresco:0.12.0'
+    //内存泄露检测工具 区分开发、发行版
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
 }
