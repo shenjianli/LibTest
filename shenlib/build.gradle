@@ -56,6 +56,7 @@ dependencies {
     compile files('libs/okio-1.8.0.jar')
     compile files('libs/retrofit-2.0.2.jar')
     compile files('libs/adapter-rxjava-2.0.2.jar')
+    compile 'com.squareup.retrofit2:converter-scalars:2.0.0-beta4'//ConverterFactory的String依赖包
 }
 apply from: './install.gradle'
 apply from: './bintray.gradle'

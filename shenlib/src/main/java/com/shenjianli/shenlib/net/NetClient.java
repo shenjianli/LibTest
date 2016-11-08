@@ -22,6 +22,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 
 public class NetClient {
@@ -96,7 +97,11 @@ public class NetClient {
             retrofit = new Retrofit.Builder()
                     .baseUrl(url)
                     .client(okHttpClient)
+                    //增加返回值为String的支持
+                    .addConverterFactory(ScalarsConverterFactory.create())
+                    //增加返回值为Gson的支持(以实体类返回)
                     .addConverterFactory(GsonConverterFactory.create())
+                    //增加返回值为Oservable<T>的支持
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .build();
         }
