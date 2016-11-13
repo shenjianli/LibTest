@@ -114,3 +114,6 @@ socket.sendUrgentData(0xFF)
 
 大幅提高Android开发效率之Android项目模板化
 http://www.jianshu.com/p/e8ac0c284601
+
+Android 复杂的列表视图新写法：
+https://drakeet.me/effective-multitype
