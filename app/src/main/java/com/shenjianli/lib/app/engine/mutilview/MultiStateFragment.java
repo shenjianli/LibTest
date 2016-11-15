@@ -31,9 +31,9 @@ public class MultiStateFragment extends Fragment {
         mMultiStateView = (MultiStateView) view.findViewById(R.id.multi_state_view);
         mContentTv = (TextView) view.findViewById(R.id.content_tv);
         mMultiStateView.addViewForStatus(OTHER_STATUS, R.layout.view_other_status);
-//        mMultiStateView.addViewForStatus(BaseMultiStateView.STATE_LOADING, R.layout.msv_view_state_loading);
-//        mMultiStateView.addViewForStatus(BaseMultiStateView.STATE_FAIL, R.layout.msv_view_state_fail);
-//        mMultiStateView.addViewForStatus(BaseMultiStateView.STATE_EMPTY, R.layout.msv_view_state_empty);
+        mMultiStateView.addViewForStatus(MultiStateView.STATE_LOADING, R.layout.msv_view_state_loading);
+        mMultiStateView.addViewForStatus(MultiStateView.STATE_FAIL, R.layout.msv_view_state_fail);
+        mMultiStateView.addViewForStatus(MultiStateView.STATE_EMPTY, R.layout.msv_view_state_empty);
 
         mContentTv.setOnClickListener(new View.OnClickListener() {
             @Override
