@@ -137,4 +137,17 @@ public class AppUtils
 
 		return result.toString();
 	}
+
+	public static String printMem(String when) {
+		//程序可用的最大内存
+		float maxMem = Runtime.getRuntime().maxMemory() / 1024 / 1024;
+		//程序当前占用的内存
+		float totalMem = Runtime.getRuntime().totalMemory() / 1024 / 1024;
+		//freeMem != maxMem - totalMem
+		//我理解 freeMem应该是 当前分配给该程序的内存 - totalMem， 当前分配给程序的内存时动态的(在小于maxMem范围内)
+		//同virtualbox安装的ubuntu虚拟机占用内存类似，设置个最大内存，但实际占用内存时动态分配的
+		float freeMem = Runtime.getRuntime().freeMemory() / 1024 / 1024;
+
+		return (when + ": maxMem | totalMem | freeMem : " + maxMem + "M|" + totalMem + "M|" + freeMem + "M");
+	}
 }
