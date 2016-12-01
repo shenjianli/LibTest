@@ -15,6 +15,7 @@ import com.shenjianli.lib.R;
 import com.shenjianli.lib.app.adapter.RecylerViewAdapter;
 import com.shenjianli.lib.api.ApiStores;
 import com.shenjianli.lib.app.engine.mutilview.MultiViewMainActivity;
+import com.shenjianli.lib.app.engine.screen.ScreenActivity;
 import com.shenjianli.lib.model.WeatherJson;
 import com.shenjianli.lib.model.DemoData;
 import com.shenjianli.lib.app.engine.home.PreHomeDataManager;
@@ -65,7 +66,7 @@ public class MainActivity extends BaseActivity implements NetBroadcastReceiver.N
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        LogUtils.i(ScreenUtils.getScreenInfo(this));
+        LogUtils.i(ScreenUtils.getScreenInfo(this).toString());
         ButterKnife.bind(this);
         NetBroadcastReceiver.addNetStateListener(this);
         startService(new Intent(this, BackgroundMonitorService.class));
@@ -99,6 +100,10 @@ public class MainActivity extends BaseActivity implements NetBroadcastReceiver.N
                         break;
                     case 5:
                         intent = new Intent(MainActivity.this, MultiViewMainActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 6:
+                        intent = new Intent(MainActivity.this, ScreenActivity.class);
                         startActivity(intent);
                         break;
                     default:
@@ -144,6 +149,11 @@ public class MainActivity extends BaseActivity implements NetBroadcastReceiver.N
         demodata = new DemoData();
         demodata.setImgId(R.drawable.ic_launcher);
         demodata.setName("MultiView");
+        mDemoDatas.add(demodata);
+
+        demodata = new DemoData();
+        demodata.setImgId(R.drawable.ic_launcher);
+        demodata.setName("Adapter");
         mDemoDatas.add(demodata);
 
         for (int i = 0; i < 5; i++) {

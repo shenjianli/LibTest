@@ -61,7 +61,11 @@
             android:name=".app.activity.DrawerActivity"
             android:label="@string/title_activity_drawer"
             android:theme="@style/AppTheme"></activity>
+
         <activity android:name=".app.engine.mutilview.MultiViewMainActivity">
+        </activity>
+
+        <activity android:name=".app.engine.screen.ScreenActivity">
         </activity>
     </application>
 
