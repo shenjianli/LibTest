@@ -1,8 +1,8 @@
 package com.shenjianli.shenlib.base;
 
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
-
 import android.support.v4.app.FragmentActivity;
 import android.view.Window;
 
@@ -136,4 +136,17 @@ public class BaseFragmentActivity extends FragmentActivity {
 		}
 	}
 
+
+	/**
+	 * 设置字体不随系统设置变化而改变
+	 * @return
+	 */
+	@Override
+	public Resources getResources() {
+		Resources res = super.getResources();
+		Configuration config=new Configuration();
+		config.setToDefaults();
+		res.updateConfiguration(config,res.getDisplayMetrics() );
+		return res;
+	}
 }
