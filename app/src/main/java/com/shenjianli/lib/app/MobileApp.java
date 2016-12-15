@@ -27,6 +27,8 @@ public class MobileApp extends MultiDexApplication{
         super.onCreate();
         LibApp.getLibInstance().setMobileContext(this);
 
+        com.wanjian.sak.LayoutManager.init(this);
+
         //initByRawConfigFile();
         initByGradleFile();
 
