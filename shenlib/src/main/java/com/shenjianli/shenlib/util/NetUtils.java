@@ -8,6 +8,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.NetworkInfo.State;
 import android.net.Uri;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 
 import com.shenjianli.shenlib.Constants;
 
@@ -74,5 +76,23 @@ public class NetUtils {
         return NETWORN_NONE;
     }
 
+	public static String getWifiDeviceInfo(Context context){
+		StringBuilder wifiDeviceId = new StringBuilder();
+		WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+		WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+		wifiDeviceId.append("SSID=");
+		wifiDeviceId.append(wifiInfo.getSSID());
+		wifiDeviceId.append("，MacAddress=");
+		wifiDeviceId.append(wifiInfo.getMacAddress());
+		wifiDeviceId.append("，HiddenSSID=");
+		wifiDeviceId.append(wifiInfo.getHiddenSSID());
+		wifiDeviceId.append("，NetworkId=");
+		wifiDeviceId.append(wifiInfo.getNetworkId());
+		wifiDeviceId.append("，Rssi=");
+		wifiDeviceId.append(wifiInfo.getRssi());
+		wifiDeviceId.append("，BSSID=");
+		wifiDeviceId.append(wifiInfo.getBSSID());
+		return wifiDeviceId.toString();
+	}
 
 }
