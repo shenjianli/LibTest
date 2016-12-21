@@ -40,6 +40,8 @@ public class NetClient {
             builder.cache(cache).addInterceptor(new CacheInterceptor());
             builder.interceptors().add(noNetcache);//无网络
             builder.networkInterceptors().add(noNetcache);//有网络
+            //builder.networkInterceptors().add(new StethoInterceptor());//有网络
+
             /**
              *  公共参数，代码略
              */

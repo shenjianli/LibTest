@@ -34,11 +34,13 @@ public class LibApp extends Application{
 
     public void setMobileContext(Context mMobileContext) {
         this.mMobileContext = mMobileContext;
+        //Stetho.initializeWithDefaults(mMobileContext);
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        //Stetho.initializeWithDefaults(mMobileContext);
     }
 
     // 私有化构造函数
