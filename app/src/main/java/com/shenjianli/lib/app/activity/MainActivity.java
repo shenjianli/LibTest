@@ -28,6 +28,7 @@ import com.shenjianli.shenlib.net.NetClient;
 import com.shenjianli.shenlib.net.RetrofitCallback;
 import com.shenjianli.shenlib.receiver.NetBroadcastReceiver;
 import com.shenjianli.shenlib.util.CustomToast;
+import com.shenjianli.shenlib.util.DeviceUtils;
 import com.shenjianli.shenlib.util.LogUtils;
 import com.shenjianli.shenlib.util.NetUtils;
 import com.shenjianli.shenlib.util.ScreenUtils;
@@ -69,6 +70,7 @@ public class MainActivity extends BaseActivity implements NetBroadcastReceiver.N
         setContentView(R.layout.activity_main);
         LogUtils.i(ScreenUtils.getScreenInfo(this).toString());
         LogUtils.i(NetUtils.getWifiDeviceInfo(this));
+        LogUtils.i(DeviceUtils.getPhoneInfo(this));
         ButterKnife.bind(this);
         NetBroadcastReceiver.addNetStateListener(this);
         startService(new Intent(this, BackgroundMonitorService.class));
