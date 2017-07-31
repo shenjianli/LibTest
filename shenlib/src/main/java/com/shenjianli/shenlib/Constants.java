@@ -16,5 +16,5 @@ public class Constants {
 
     public static final int CACHE_SIZE = 1024 * 1024 * 50;  //NetClient中http请求缓存的最大值
 
-    public static String SERVER_BASE_URL = "http://m.mall.icbc.com.cn/";
+    public static String SERVER_BASE_URL = "http://m.mall.shen.com.cn/";
 }

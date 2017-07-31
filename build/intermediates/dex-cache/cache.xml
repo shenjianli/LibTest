@@ -103,7 +103,7 @@
         jar="D:\my\AndroidProject\source\LibTest\app\build\intermediates\incremental-runtime-classes\Dev\debug\instant-run.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="be8fc19ba0f932593bc1ebf6152729535b917fa9">
+        sha1="d9b665156600d0a733af74670432d468b99398fd">
         <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\Dev\debug\folders\1000\10\instant-run_ea20efbd106d01be6a0da79b3f914e307b28c682\classes.dex" />
     </item>
     <item
@@ -229,7 +229,7 @@
         jar="D:\my\AndroidProject\source\LibTest\app\build\intermediates\incremental-classes\Dev\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="93082257145004491d77623ea6940cc87135ddf2">
+        sha1="6acc916f8cdbe1aed18d6279bf8f65f4fad6313d">
         <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\Dev\debug\folders\1000\10\instant-run-bootstrap_97cc0ccb3a4d2d82c3799e8ee546f498c91f2438\classes.dex" />
     </item>
     <item
@@ -259,6 +259,13 @@
         revision="23.0.3"
         sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
         <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\Dev\debug\folders\1000\10\com.android.support-support-vector-drawable-23.4.0_737e6b59ec0e914e4208ada126e8e0083a5bc487\classes.dex" />
+    </item>
+    <item
+        jar="D:\my\AndroidProject\source\LibTest\app\build\intermediates\exploded-aar\com.wanjian\sak\0.0.2\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="630ac40035bf99cdb90d49523d857fe3c9afcfff">
+        <dex dex="D:\my\AndroidProject\source\LibTest\app\build\intermediates\transforms\dex\Dev\debug\folders\1000\10\com.wanjian-sak-0.0.2_96fadd0f3be65ea2fc06c54c8de3d974b19beafe\classes.dex" />
     </item>
     <item
         jar="C:\Users\edianzu\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"

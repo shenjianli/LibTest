@@ -18,9 +18,9 @@ android {
 
     signingConfigs {
         config{
-            storeFile file('../icbc_release_key')
+            storeFile file('../shen_release_key')
             storePassword 'Password123!'
-            keyAlias 'icbc_release_key'
+            keyAlias 'shen_release_key'
             keyPassword 'Password123!'
         }
     }
@@ -141,6 +141,7 @@ dependencies {
     compile 'com.android.support:design:23.4.0'
     provided 'com.google.code.gson:gson:2.6.1'
     compile project(':shenlib')
+    //compile 'com.github.shenjianli.shenlib:shenlib:1.0.3'
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
     compile 'com.github.bumptech.glide:glide:3.7.0'

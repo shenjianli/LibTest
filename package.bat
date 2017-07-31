@@ -1,2 +1,2 @@
-rd /s /q .\ICBCMall\build
+rd /s /q .\ShenMall\build
 gradlew assembleDevRelease

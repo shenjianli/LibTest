@@ -334,9 +334,9 @@ android {
 
     signingConfigs {
         config{
-            storeFile file('../icbc_release_key')
+            storeFile file('../shen_release_key')
             storePassword 'Password123!'
-            keyAlias 'icbc_release_key'
+            keyAlias 'shen_release_key'
             keyPassword 'Password123!'
         }
     }

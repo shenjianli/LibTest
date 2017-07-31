@@ -1,19 +1,19 @@
 @echo off
-set month=11ÔÂ
+set month=11ï¿½ï¿½
 ::echo %date:~0,4%%date:~5,2%%date:~8,2%-%time:~0,2%%time:~3,2%%time:~6,2%
 ::20161021-123725
 set date=%date:~0,4%%date:~5,2%%date:~8,2%-%time:~0,2%%time:~3,2%-%month%
 echo %date%
 
-::Ô´apkµØÖ·
-set source=.\ICBCMall\build\outputs\apk
-set target1=D:\Icbc\dev\doc\×ÊÁÏ\´ò°ü\apk\%date%
-set target2=\\122.19.173.227\document\¹¤ÐÐandroid\%date%
+::Ô´apkï¿½ï¿½Ö·
+set source=.\ShenMall\build\outputs\apk
+set target1=D:\shen\dev\doc\ï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½\apk\%date%
+set target2=\\122.19.173.227\document\ï¿½ï¿½ï¿½ï¿½android\%date%
 
 if exist %target1% (
    rd /s /q  %target1%
    md %target1%
-   echo "ÒÑ¾­´æÔÚÎÄ¼þ¼Ð"
+   echo "ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½"
 ) else (
    md %target1%
 )
@@ -25,7 +25,7 @@ for /r %source% %%a in (*_release_*) do (
 if exist %target2% (
    rd /s /q  %target2%
    md %target2%
-   echo "ÒÑ¾­´æÔÚÎÄ¼þ¼Ð"
+   echo "ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½"
 ) else (
    md %target2%
 )
